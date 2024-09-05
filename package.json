@@ -2,15 +2,15 @@
   "name": "osc-css",
   "keywords": [
     "css",
-    "custom-props",
     "animation",
+    "custom-properties",
+    "css-vars",
     "oscillators",
-    "transitions",
+    "math",
     "trigonometry"
   ],
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Custom CSS Properties to create animations with oscillators",
-  "keywords": ["css", "animation", "custom-properties", "css-vars", "oscillators", "math", "trigonometry"],
   "files": [
     "osc.css"
   ],
