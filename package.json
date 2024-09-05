@@ -1,13 +1,5 @@
 {
   "name": "osc-css",
-  "version": "0.2.1",
-  "description": "Custom CSS Properties to create animations with oscillators",
-  "files": [
-    "osc.css"
-  ],
-  "scripts": {
-    "build": "rm -rf dist/ && mkdir dist && cp ./src/osc.css dist/"
-  },
   "keywords": [
     "css",
     "custom-props",
@@ -16,6 +8,24 @@
     "transitions",
     "trigonometry"
   ],
+  "version": "0.2.1",
+  "description": "Custom CSS Properties to create animations with oscillators",
+  "keywords": ["css", "animation", "custom-properties", "css-vars", "oscillators", "math", "trigonometry"],
+  "files": [
+    "osc.css"
+  ],
+  "scripts": {
+    "build": "rm -rf dist/ && mkdir dist && cp ./src/osc.css dist/"
+  },
   "author": "Nils Riedemann",
-  "license": "MIT"
+  "homepage": "https://sr.ht/~snock/osc-css",
+  "repository": {
+    "type": "git",
+    "url": "git+https://git.sr.ht/~snock/osc-css"
+  },
+  "license": "MIT",
+  "bugs": {
+    "email": "~snock/public-inbox@lists.sr.ht",
+    "url": "https://git.sr.ht/~snock/osc-css"
+  }
 }
