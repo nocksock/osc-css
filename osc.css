@@ -1,7 +1,4 @@
 @layer utilities {
-  body {
-    outline: 2px solid red;
-  }
   .osc {
     animation: var(--osc);
   }
