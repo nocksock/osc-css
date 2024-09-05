@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Custom CSS Properties to create animations with oscillators",
   "files": [
-    "dist/*.css"
+    "osc.css"
   ],
   "scripts": {
     "build": "rm -rf dist/ && mkdir dist && cp ./src/osc.css dist/"
