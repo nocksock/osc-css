@@ -6,16 +6,16 @@
     animation: var(--osc);
   }
 
-  :where(.osc) * {
+  :where(*) {
     --_osc-frq: var(--osc-frq, 2);
-    --_osc-delay: var(--osc-delay, 0s);
-    --_osc-fade-dur: var(--osc-dur, 2s);
-    --_osc-fade-typ: var(--osc-fade-typ, ease-in-out);
+    --_osc-del: var(--osc-del, 0s);
+    --_osc-dur: var(--osc-dur, 2s);
+    --_osc-fade-type: var(--osc-fade-type, ease-in-out);
 
     --osc: 
-      calc(1s / var(--_osc-frq)) linear var(--_osc-delay) infinite osc-saw,
-      calc(0.5s / var(--_osc-frq)) linear var(--_osc-delay) alternate infinite osc-tri,
-      var(--_osc-fade-dur) var(--_osc-fade-typ) var(--_osc-delay) forwards osc-f
+      calc(1s / var(--_osc-frq)) linear var(--_osc-del) infinite osc-saw,
+      calc(0.5s / var(--_osc-frq)) linear var(--_osc-del) alternate infinite osc-tri,
+      var(--_osc-dur) var(--_osc-fade-type) var(--_osc-del) forwards osc-f
     ;
     
     --osc-sinf: calc(sin(var(--osc-f) * pi * 2));
@@ -69,9 +69,15 @@
   to   { --osc-saw: 1; }
 }
 
-@property --osc-f {
+@property --osc-if {
   syntax: "<number>";
   initial-value: 0;
+  inherits: true;
+}
+
+@property --osc-f {
+  syntax: "<number>";
+  initial-value: 1;
   inherits: true;
 }
 
