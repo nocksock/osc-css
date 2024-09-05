@@ -1,6 +1,6 @@
 {
   "name": "osc-css",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Custom CSS Properties to create animations with oscillators",
   "files": [
     "osc.css"
@@ -8,7 +8,14 @@
   "scripts": {
     "build": "rm -rf dist/ && mkdir dist && cp ./src/osc.css dist/"
   },
-  "keywords": ["css", "custom-props", "animation", "oscillators", "transitions", "trigonometry"],
+  "keywords": [
+    "css",
+    "custom-props",
+    "animation",
+    "oscillators",
+    "transitions",
+    "trigonometry"
+  ],
   "author": "Nils Riedemann",
   "license": "ISC"
 }
