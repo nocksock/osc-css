@@ -1,0 +1,7 @@
+.ball {
+    animation: var(--osc);
+    transform: translate(
+      calc(var(--osc-sin) * 200px),
+      calc(var(--osc-cos) * 200px)
+    );
+}

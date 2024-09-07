@@ -1,0 +1,18 @@
+---
+layout: home
+---
+
+<main>
+  <header>
+    <h1>{{ package.title }}</h1>
+    <p>{{ package.description }}</p>
+  </header>
+</main>
+
+{%- include 'partials/graph.pug' -%}
+
+<ul>
+	{%- for entry in collections.sortedDemos %}
+    <li><a href="{{ entry.url }}">{{entry.fileSlug}}</li>
+  {%- endfor %}
+</ul>

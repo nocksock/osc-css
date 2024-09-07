@@ -1,0 +1,25 @@
+:root {
+  --color-bg: Canvas;
+  --color-fg: CanvasText;
+
+  --color-05: color-mix(in hsl, var(--color-fg) 05%, var(--color-bg));
+  --color-10: color-mix(in hsl, var(--color-fg) 10%, var(--color-bg));
+  --color-20: color-mix(in hsl, var(--color-fg) 20%, var(--color-bg));
+  --color-30: color-mix(in hsl, var(--color-fg) 30%, var(--color-bg));
+  --color-40: color-mix(in hsl, var(--color-fg) 40%, var(--color-bg));
+  --color-50: color-mix(in hsl, var(--color-fg) 50%, var(--color-bg));
+  --color-60: color-mix(in hsl, var(--color-fg) 60%, var(--color-bg));
+  --color-70: color-mix(in hsl, var(--color-fg) 70%, var(--color-bg));
+  --color-80: color-mix(in hsl, var(--color-fg) 80%, var(--color-bg));
+  --color-90: color-mix(in hsl, var(--color-fg) 90%, var(--color-bg));
+  --color-95: color-mix(in hsl, var(--color-fg) 95%, var(--color-bg));
+
+  --color-accent: theme('colors.fuchsia.500');
+  --color-primary: theme('colors.teal.500');
+  --color-secondary: theme('colors.cyan.500')
+
+  color-scheme: light dark;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
