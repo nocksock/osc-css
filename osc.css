@@ -1,47 +1,44 @@
-@layer utilities {
-  .osc {
-    animation: var(--osc);
-  }
+.osc {
+  animation: var(--osc);
+}
 
-  :where(*) {
-    --_osc-frq: var(--osc-frq, 2);
-    --_osc-del: var(--osc-del, 0s);
-    --_osc-dur: var(--osc-dur, 2s);
-    --_osc-fade-type: var(--osc-fade-type, ease-in-out);
+:where(*) {
+  --_osc-frq: var(--osc-frq, 1);
+  --_osc-del: var(--osc-del, 0s);
+  --_osc-dur: var(--osc-dur, 2s);
+  --_osc-fade-type: var(--osc-fade-type, ease-in-out);
 
-    --osc: 
-      calc(1s / var(--_osc-frq)) linear var(--_osc-del) infinite osc-saw,
-      calc(0.5s / var(--_osc-frq)) linear var(--_osc-del) alternate infinite osc-tri,
-      var(--_osc-dur) var(--_osc-fade-type) var(--_osc-del) forwards osc-f
-    ;
-    
-    --osc-sinf: calc(sin(var(--osc-f) * pi * 2));
-    --osc-cosf: calc(cos(var(--osc-f) * pi * 2));
+  --osc:
+    calc(1s / var(--_osc-frq)) linear var(--_osc-del) infinite osc-saw,
+    calc(0.5s / var(--_osc-frq)) linear var(--_osc-del) alternate infinite osc-tri,
+    var(--_osc-dur) var(--_osc-fade-type) var(--_osc-del) forwards osc-f;
 
-    --osc-sin:  calc(sin(var(--osc-saw)  * pi * 2));
-    --osc-cos:  calc(cos(var(--osc-saw)  * pi * 2));
+  --osc-sinf: calc(sin(var(--osc-f) * pi * 2));
+  --osc-cosf: calc(cos(var(--osc-f) * pi * 2));
 
-    --osc-if: calc(1 - var(--osc-f));
-    --osc-isin: calc(1 - var(--osc-sin));
-    --osc-icos: calc(1 - var(--osc-cos));
-    --osc-isaw: calc(1 - var(--osc-saw));
-    --osc-itri: calc(1 - var(--osc-tri));
+  --osc-sin: calc(sin(var(--osc-saw) * pi * 2));
+  --osc-cos: calc(cos(var(--osc-saw) * pi * 2));
 
-    --osc-fsin: calc(var(--osc-sin) * var(--osc-f));
-    --osc-fcos: calc(var(--osc-cos) * var(--osc-f));
-    --osc-fsaw: calc(var(--osc-saw) * var(--osc-f));
-    --osc-ftri: calc(var(--osc-tri) * var(--osc-f));
+  --osc-if: calc(1 - var(--osc-f));
+  --osc-isin: calc(1 - var(--osc-sin));
+  --osc-icos: calc(1 - var(--osc-cos));
+  --osc-isaw: calc(1 - var(--osc-saw));
+  --osc-itri: calc(1 - var(--osc-tri));
 
-    --osc-ifsin: calc(var(--osc-isin) * var(--osc-if));
-    --osc-ifcos: calc(var(--osc-icos) * var(--osc-if));
-    --osc-iftri: calc(var(--osc-itri) * var(--osc-if));
-    --osc-ifsaw: calc(var(--osc-isaw) * var(--osc-if));
+  --osc-fsin: calc(var(--osc-sin) * var(--osc-f));
+  --osc-fcos: calc(var(--osc-cos) * var(--osc-f));
+  --osc-fsaw: calc(var(--osc-saw) * var(--osc-f));
+  --osc-ftri: calc(var(--osc-tri) * var(--osc-f));
 
-    --osc-ifisin: calc(var(--osc-isin) * var(--osc-if));
-    --osc-ificos: calc(var(--osc-icos) * var(--osc-if));
-    --osc-ifitri: calc(var(--osc-itri) * var(--osc-if));
-    --osc-ifisaw: calc(var(--osc-isaw) * var(--osc-if));
-  }
+  --osc-ifsin: calc(var(--osc-isin) * var(--osc-if));
+  --osc-ifcos: calc(var(--osc-icos) * var(--osc-if));
+  --osc-iftri: calc(var(--osc-itri) * var(--osc-if));
+  --osc-ifsaw: calc(var(--osc-isaw) * var(--osc-if));
+
+  --osc-ifisin: calc(var(--osc-isin) * var(--osc-if));
+  --osc-ificos: calc(var(--osc-icos) * var(--osc-if));
+  --osc-ifitri: calc(var(--osc-itri) * var(--osc-if));
+  --osc-ifisaw: calc(var(--osc-isaw) * var(--osc-if));
 }
 
 @property --osc-tri {
@@ -51,8 +48,13 @@
 }
 
 @keyframes osc-tri {
-  from { --osc-tri: 0; }
-  to   { --osc-tri: 1; }
+  from {
+    --osc-tri: 0;
+  }
+
+  to {
+    --osc-tri: 1;
+  }
 }
 
 @property --osc-saw {
@@ -62,8 +64,13 @@
 }
 
 @keyframes osc-saw {
-  from { --osc-saw: 0; }
-  to   { --osc-saw: 1; }
+  from {
+    --osc-saw: 0;
+  }
+
+  to {
+    --osc-saw: 1;
+  }
 }
 
 @property --osc-if {
@@ -79,6 +86,11 @@
 }
 
 @keyframes osc-f {
-  from { --osc-f: 1; }
-  to   { --osc-f: 0; }
+  from {
+    --osc-f: 1;
+  }
+
+  to {
+    --osc-f: 0;
+  }
 }

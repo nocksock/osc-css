@@ -1,1 +1,4 @@
+dist
+_cache
+.DS_Store
 node_modules

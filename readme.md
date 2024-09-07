@@ -5,6 +5,7 @@ Easily create smooth, organic animations, that loop seamlessly - or not - using 
 - No Dependencies
 - Pure CSS
 - Compatible with Tailwind. Obviously. It's just CSS; but I heard it's good marketing.
+- Baseline 2024
 
 ## Installation
 
