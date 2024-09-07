@@ -6,7 +6,7 @@ export default defineConfig(() => ({
     minifyWhitespace: true,
   },
   build: {
-    outDir: './dist/assets',
+    outDir: './_site/assets',
     lib: {
       entry: './docs/assets/main.ts',
       name: "main",
