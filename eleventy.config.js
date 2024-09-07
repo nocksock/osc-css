@@ -13,22 +13,34 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter('keys', value => Object.keys(value))
 
- // set markdown footnote processor
-  let markdownIt = require("markdown-it");
-  let markdownItFootnote = require("markdown-it-footnote");
-  
+  // Sort with `Array.sort`
+  eleventyConfig.addCollection('sortedDemos', function (collectionApi) {
+    return collectionApi.getFilteredByTag('demo').sort(function (a, b) {
+      return a.inputPath.localeCompare(b.inputPath) // sort by path - ascending
+    })
+  })
+
+  // set markdown footnote processor
+  let markdownIt = require('markdown-it')
+  let markdownItFootnote = require('markdown-it-footnote')
+
   let options = {
     html: true, // Enable HTML tags in source
-    linkify: true // Autoconvert URL-like text to links
-  };
-  
-  let markdownLib =  markdownIt(options).use(markdownItFootnote);
-  eleventyConfig.setLibrary("md", markdownLib);
+    linkify: true, // Autoconvert URL-like text to links
+  }
+
+  let markdownLib = markdownIt(options).use(markdownItFootnote)
+  eleventyConfig.setLibrary('md', markdownLib)
+
+  const pathPrefix = process.env.GITHUB_REPOSITORY
+    ? (pathPrefix = process.env.GITHUB_REPOSITORY.split('/').at(1))
+    : ''
 
   return {
     dir: {
       input: 'docs',
-      output: 'dist',
+      output: '_site',
     },
+    pathPrefix,
   }
 }
