@@ -16,10 +16,10 @@
 
   --_osc-phase:  var(--osc-phase, 0s);
 
-  --_osc-delay-amount:  var(--osc-delay,  0);
-  --_osc-attack-amount: var(--osc-attack, 2);
-  --_osc-hold-amount:   var(--osc-hold,   1);
-  --_osc-decay-amount:  var(--osc-decay,  1);
+  --_osc-delay-amount:  var(--osc-delay);
+  --_osc-attack-amount: var(--osc-attack);
+  --_osc-hold-amount:   var(--osc-hold);
+  --_osc-decay-amount:  var(--osc-decay);
 
   --_osc-env-total: calc(
     var(--_osc-delay-amount) + 
@@ -71,10 +71,10 @@
 
 
 /* ;--: amp envelope ; */
-@property --osc-attack         { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
-@property --osc-delay          { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
-@property --osc-hold           { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
-@property --osc-decay          { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
+@property --osc-attack         { syntax: "<number>"  ; initial-value: 1 ; inherits: true ; }
+@property --osc-delay          { syntax: "<number>"  ; initial-value: 1 ; inherits: true ; }
+@property --osc-hold           { syntax: "<number>"  ; initial-value: 1 ; inherits: true ; }
+@property --osc-decay          { syntax: "<number>"  ; initial-value: 1 ; inherits: true ; }
 
 @property --_osc-env-total     { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
 @property --_osc-delay-amount  { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }

@@ -6,8 +6,8 @@ tags: demo
 <style>
 .graph {
   --bar-max-height: 50px;
-  --bar-width: 5px;
-  --bar-gap: 3px;
+  --bar-width: 10px;
+  --bar-gap: 2px;
   --bar-count: 100;
   --padding: 2rem;
   display: flex;
@@ -23,19 +23,15 @@ tags: demo
     /* --osc-state: paused; */
     --amp-y: calc(var(--bar-max-height) * var(--osc-amp));
     --ball-size: var(--bar-width);
-    --osc-frequency: 1/8;
-    /* --osc-tri-frequency: var(--osc-amp); */
-    --osc-attack: 0.25;
-    --osc-hold: 0.2;
-    --osc-decay: 0.5;
-    --osc-delay: 0.15;
 
     animation: var(--osc);
     /* --ball-height: calc(var(--osc-SIN)* var(--amp-y) * 2); */
     /* translate: calc(var(--bar-width) / -2); */
-    translate: 0 calc(var(--osc-sin) * var(--osc-amp) * var(--amp-y));
+    /* height:  calc(10px + var(--osc-SIN) * var(--osc-amp) * var(--bar-max-height)); */
+    translate: 0 calc(var(--osc-sin) * var(--osc-amp) * var(--bar-max-height));
   }
 }
+
 
 </style>
 
