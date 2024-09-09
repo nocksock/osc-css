@@ -1,96 +1,88 @@
-.osc {
-  animation: var(--osc);
-}
-
 :where(*) {
-  --_osc-frq: var(--osc-frq, 1);
-  --_osc-del: var(--osc-del, 0s);
-  --_osc-dur: var(--osc-dur, 2s);
-  --_osc-fade-type: var(--osc-fade-type, ease-in-out);
+  /**
+    TODO: add iteration-delay (post envelope delay)
+    TODO: add pulse wave (maybe with slope?)
+    TODO: phase (for sin wave (in sin()))
+    TODO: phase-offset (for each ball)
+    TODO: add --osc-x (0 to 1 for total amount) 
+  **/
+  --_osc-time-unit: 1s;
+  --_osc-state: var(--osc-state, running);
+  --_osc-amp-iterations: var(--osc-amp-iterations, infinite);
 
-  --osc:
-    calc(1s / var(--_osc-frq)) linear var(--_osc-del) infinite osc-saw,
-    calc(0.5s / var(--_osc-frq)) linear var(--_osc-del) alternate infinite osc-tri,
-    var(--_osc-dur) var(--_osc-fade-type) var(--_osc-del) forwards osc-f;
+  --_osc-global-frequency: var(--osc-frequency, 1);
+  --_osc-tri-frequency: var(--osc-tri-frequency, var(--_osc-global-frequency));
+  --_osc-saw-frequency: var(--osc-saw-frequency, var(--_osc-global-frequency));
 
-  --osc-sinf: calc(sin(var(--osc-f) * pi * 2));
-  --osc-cosf: calc(cos(var(--osc-f) * pi * 2));
+  --_osc-phase:  var(--osc-phase, 0s);
 
-  --osc-sin: calc(sin(var(--osc-saw) * pi * 2));
-  --osc-cos: calc(cos(var(--osc-saw) * pi * 2));
+  --_osc-delay-amount:  var(--osc-delay,  0);
+  --_osc-attack-amount: var(--osc-attack, 2);
+  --_osc-hold-amount:   var(--osc-hold,   1);
+  --_osc-decay-amount:  var(--osc-decay,  1);
 
-  --osc-if: calc(1 - var(--osc-f));
-  --osc-isin: calc(1 - var(--osc-sin));
-  --osc-icos: calc(1 - var(--osc-cos));
-  --osc-isaw: calc(1 - var(--osc-saw));
-  --osc-itri: calc(1 - var(--osc-tri));
+  --_osc-env-total: calc(
+    var(--_osc-delay-amount) + 
+    var(--_osc-attack-amount) + 
+    var(--_osc-hold-amount) + 
+    var(--_osc-decay-amount)
+  );
+  
+  --_osc-delay-start:   calc( var(--_osc-delay-amount)  / var(--_osc-env-total) * 100%);
+  --_osc-attack-start:  calc((var(--_osc-delay-amount)  + var(--_osc-attack-amount)) / var(--_osc-env-total) * 100%);
+  --_osc-hold-start:    calc((var(--_osc-attack-amount) + var(--_osc-hold-amount))   / var(--_osc-env-total) * 100%);
+  --_osc-decay-start:   calc( var(--_osc-hold-start));
 
-  --osc-fsin: calc(var(--osc-sin) * var(--osc-f));
-  --osc-fcos: calc(var(--osc-cos) * var(--osc-f));
-  --osc-fsaw: calc(var(--osc-saw) * var(--osc-f));
-  --osc-ftri: calc(var(--osc-tri) * var(--osc-f));
+  --_osc-envelope-ahd: linear(0 0%, 
+      0 var(--_osc-delay-start),
+      1 var(--_osc-attack-start),
+      1 var(--_osc-hold-start),
+      1 var(--_osc-decay-start),
+      0 
+    );
 
-  --osc-ifsin: calc(var(--osc-isin) * var(--osc-if));
-  --osc-ifcos: calc(var(--osc-icos) * var(--osc-if));
-  --osc-iftri: calc(var(--osc-itri) * var(--osc-if));
-  --osc-ifsaw: calc(var(--osc-isaw) * var(--osc-if));
+  --_osc-envelope: var(--osc-envelope, var(--_osc-envelope-ahd));
 
-  --osc-ifisin: calc(var(--osc-isin) * var(--osc-if));
-  --osc-ificos: calc(var(--osc-icos) * var(--osc-if));
-  --osc-ifitri: calc(var(--osc-itri) * var(--osc-if));
-  --osc-ifisaw: calc(var(--osc-isaw) * var(--osc-if));
+  --osc: 
+    calc(var(--_osc-env-total) * var(--_osc-time-unit)) var(--_osc-envelope) var(--_osc-phase) forwards var(--_osc-amp-iterations) osc-amp var(--_osc-state),
+    calc(1s/ var(--_osc-saw-frequency)) linear var(--_osc-phase) infinite osc-saw var(--_osc-state),
+    calc(1s/ var(--_osc-tri-frequency)) linear var(--_osc-phase) alternate infinite osc-tri var(--_osc-state)
+  ;
+
+  --osc-sin: calc(sin(var(--osc-saw) * pi ));
+  --osc-cos: calc(cos(var(--osc-saw) * pi ));
+
+  /* - normalised oscillators - */
+  --osc-SIN: calc((1 + var(--osc-sin)) / 2);
+  --osc-COS: calc((1 + var(--osc-cos)) / 2);
+  --osc-SAW: calc((1 + var(--osc-saw)) / 2);
+  --osc-TRI: calc((1 + var(--osc-tri)) / 2);
 }
 
-@property --osc-tri {
-  syntax: "<number>";
-  initial-value: 0;
-  inherits: true;
-}
+/* TODO: declare missing properties (makes it easier to debug) */
+/* - wave forms - */
+@property --osc-tri            { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
+@property --osc-saw            { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
+@property --osc-amp            { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
 
-@keyframes osc-tri {
-  from {
-    --osc-tri: 0;
-  }
+@keyframes osc-tri { from { --osc-tri: -1; } to { --osc-tri:  1; } }
+@keyframes osc-saw { from { --osc-saw: -1; } to { --osc-saw:  1; } }
+@keyframes osc-amp { from { --osc-amp:  0; } to { --osc-amp:  1; } }
 
-  to {
-    --osc-tri: 1;
-  }
-}
 
-@property --osc-saw {
-  syntax: "<number>";
-  initial-value: 0;
-  inherits: true;
-}
+/* ;--: amp envelope ; */
+@property --osc-attack         { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
+@property --osc-delay          { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
+@property --osc-hold           { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
+@property --osc-decay          { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
 
-@keyframes osc-saw {
-  from {
-    --osc-saw: 0;
-  }
+@property --_osc-env-total     { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
+@property --_osc-delay-amount  { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
+@property --_osc-attack-amount { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
+@property --_osc-hold-amount   { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
+@property --_osc-decay-amount  { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
 
-  to {
-    --osc-saw: 1;
-  }
-}
-
-@property --osc-if {
-  syntax: "<number>";
-  initial-value: 0;
-  inherits: true;
-}
-
-@property --osc-f {
-  syntax: "<number>";
-  initial-value: 1;
-  inherits: true;
-}
-
-@keyframes osc-f {
-  from {
-    --osc-f: 1;
-  }
-
-  to {
-    --osc-f: 0;
-  }
-}
+@property --_osc-delay-start   { syntax: "<percent>" ; initial-value: 0 ; inherits: true ; }
+@property --_osc-attack-start  { syntax: "<percent>" ; initial-value: 0 ; inherits: true ; }
+@property --_osc-hold-start    { syntax: "<percent>" ; initial-value: 0 ; inherits: true ; }
+@property --_osc-decay-start   { syntax: "<percent>" ; initial-value: 0 ; inherits: true ; }
