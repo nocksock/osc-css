@@ -10,7 +10,7 @@
     "math",
     "trigonometry"
   ],
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Custom CSS Properties to create animations with oscillators",
   "files": [
     "osc.css"
