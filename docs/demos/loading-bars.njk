@@ -1,0 +1,32 @@
+---
+layout: base
+tags: demo
+---
+
+<style>
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 5px;
+
+  .ball {
+    --ball-size: 10px;
+    --osc-frq: 2;
+
+    animation: var(--osc);
+    height: calc(20px + var(--nosc-sin) * 20px);
+    opacity: calc(0.5 + var(--nosc-sin) * 0.5);
+
+    &:nth-child(1) { --osc-del: 0ms; }
+    &:nth-child(2) { --osc-del: 120ms; }
+    &:nth-child(3) { --osc-del: 240ms; }
+  }
+}
+</style>
+
+<figure class="loading-spinner">
+  <div class="ball"></div>
+  <div class="ball"></div>
+  <div class="ball"></div>
+</figure>

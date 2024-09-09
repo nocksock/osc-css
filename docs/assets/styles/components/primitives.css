@@ -1,6 +1,10 @@
 .ball {
-  aspect-ratio: 1/1;
-  width: 100px;
-  border-radius: 100%;
+  --_ball-size: var(--ball-size, 100px);
+
+  position: relative;
+  width: var(--ball-width, var(--_ball-size));
+  height: var(--ball-height, var(--_ball-size));
+
+  border-radius: calc(var(--_ball-size) / 2);
   background-color: var(--color-primary);
 }

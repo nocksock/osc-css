@@ -55,21 +55,9 @@ stage: default
   </article>
 
   <css-editor id="editor" class="border p-2 rounded-lg">
-    <style>{% include "docs/demos/" + page.fileSlug + ".css" %}</style>
+    <style>{% include "docs/guide/" + page.fileSlug + ".css" %}</style>
   </css-editor>
 </main>
-
-<script type="module">
-  document
-  .querySelector("#stage")
-  .addEventListener("click", function remove(e) {
-    const stage = e.target;
-    const newStage = stage.cloneNode(true);
-    newStage.addEventListener("click", remove);
-    stage.removeEventListener("click", remove);
-    stage.replaceWith(newStage);
-  })
-</script>
 
 <svg class="hidden" version="2.0">
   <defs>

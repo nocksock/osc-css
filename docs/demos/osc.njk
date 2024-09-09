@@ -1,0 +1,46 @@
+---
+layout: base
+tags: demo
+---
+
+<style>
+.graph {
+  --bar-max-height: 50px;
+  --bar-width: 5px;
+  --bar-gap: 3px;
+  --bar-count: 100;
+  --padding: 2rem;
+  display: flex;
+  position: relative;
+  align-items: center;
+  border: 4px solid hsl(from var(--color-primary) h s calc(l * 0.8) / 10%);
+  height: calc(var(--bar-max-height) * 2 + var(--padding));
+  gap: var(--bar-gap);
+  border-radius: 0.2rem;
+  justify-content: center;
+
+  .ball {
+    /* --osc-state: paused; */
+    --amp-y: calc(var(--bar-max-height) * var(--osc-amp));
+    --ball-size: var(--bar-width);
+    --osc-frequency: 1/8;
+    /* --osc-tri-frequency: var(--osc-amp); */
+    --osc-attack: 0.25;
+    --osc-hold: 0.2;
+    --osc-decay: 0.5;
+    --osc-delay: 0.15;
+
+    animation: var(--osc);
+    /* --ball-height: calc(var(--osc-SIN)* var(--amp-y) * 2); */
+    /* translate: calc(var(--bar-width) / -2); */
+    translate: 0 calc(var(--osc-sin) * var(--osc-amp) * var(--amp-y));
+  }
+}
+
+</style>
+
+<div class="mx-auto my-8 max-w-max">
+  <figure class="graph ch-x">
+    {%- include "partials/graph.html" -%}
+  </figure>
+</div>

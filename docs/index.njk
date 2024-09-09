@@ -2,17 +2,30 @@
 layout: home
 ---
 
-<main>
+<main class="vise grid gap-8">
   <header>
-    <h1>{{ package.title }}</h1>
+    <h1 class="text-3xl">{{ package.title }}</h1>
     <p>{{ package.description }}</p>
   </header>
+
+  <section>
+    <h2>Guide</h2>
+    <ul>
+      {%- for entry in collections.sortedGuide %}
+        <li><a href="{{ entry.url }}">{{entry.fileSlug}}</li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <ul class="flex flex-wrap gap-4">
+    {%- for entry in collections.demo %}
+      <li>
+        <a href="{{entry.url}}">
+          <div class="bg-base-05 rounded-md size-32 aspect-square flex items-center justify-center">
+            {{ entry.content | safe }}
+          </div>
+        </a>
+      </li>
+    {%- endfor %}
+  </ul>
 </main>
-
-{%- include 'partials/graph.pug' -%}
-
-<ul>
-	{%- for entry in collections.sortedDemos %}
-    <li><a href="{{ entry.url }}">{{entry.fileSlug}}</li>
-  {%- endfor %}
-</ul>

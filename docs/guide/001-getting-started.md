@@ -1,7 +1,7 @@
 ---
 title: "Getting Started"
-tags: demo
-layout: demos/ball
+tags: [guide, intro]
+layout: guide
 ---
 
 ## Hello Oscillators!

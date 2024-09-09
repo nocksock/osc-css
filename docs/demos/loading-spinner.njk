@@ -1,0 +1,39 @@
+---
+layout: base
+tags: demo
+---
+
+<style>
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 5px;
+
+  .ball {
+    --ball-size: 20px;
+    --amp: 50px;
+    
+    transform: translateY(
+      calc(var(--amp) * var(--osc-sin))
+    );
+
+    animation: var(--osc);
+  }
+}
+</style>
+
+<div class="stage h-[100svh] no-ch">
+<figure class="loading-spinner">
+  <div class="ball"></div>
+  <div class="ball" style="--osc-del:  -20ms"></div>
+  <div class="ball" style="--osc-del:  -30ms"></div>
+  <div class="ball" style="--osc-del:  -50ms"></div>
+  <div class="ball" style="--osc-del:  -70ms"></div>
+  <div class="ball" style="--osc-del:  -90ms"></div>
+  <div class="ball" style="--osc-del:  -110ms"></div>
+  <div class="ball" style="--osc-del:  -130ms"></div>
+  <div class="ball" style="--osc-del:  -150ms"></div>
+  <div class="ball" style="--osc-del:  -170ms"></div>
+</figure>
+</div>

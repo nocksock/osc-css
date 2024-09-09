@@ -1,24 +1,23 @@
 const package = require('./package.json')
 
-module.exports = function (eleventyConfig) {
-  eleventyConfig.addGlobalData('package', package)
+module.exports = function (cfg) {
+  cfg.addGlobalData('package', package)
 
-  eleventyConfig.addPassthroughCopy({
+  cfg.addPassthroughCopy({
     './docs/static': '/',
     './docs/demos/*.css': '/demos',
   })
 
-  eleventyConfig.addWatchTarget('./docs/**/*.{css,svg,webp,png,jpeg}')
-  eleventyConfig.addWatchTarget('./dist/assets/style.css')
+  cfg.addWatchTarget('./docs/**/*.css')
+  cfg.addWatchTarget('./dist/assets/style.css')
 
-  eleventyConfig.addFilter('keys', value => Object.keys(value))
+  cfg.addFilter('keys', value => Object.keys(value))
 
-  // Sort with `Array.sort`
-  eleventyConfig.addCollection('sortedDemos', function (collectionApi) {
-    return collectionApi.getFilteredByTag('demo').sort(function (a, b) {
-      return a.inputPath.localeCompare(b.inputPath) // sort by path - ascending
-    })
-  })
+  cfg.addCollection('sortedGuide', collectionApi =>
+    collectionApi
+      .getFilteredByTag('guide')
+      .sort((a, b) => a.inputPath.localeCompare(b.inputPath))
+  )
 
   // set markdown footnote processor
   let markdownIt = require('markdown-it')
@@ -30,7 +29,7 @@ module.exports = function (eleventyConfig) {
   }
 
   let markdownLib = markdownIt(options).use(markdownItFootnote)
-  eleventyConfig.setLibrary('md', markdownLib)
+  cfg.setLibrary('md', markdownLib)
 
   const pathPrefix = process.env.GITHUB_REPOSITORY
     ? (pathPrefix = process.env.GITHUB_REPOSITORY.split('/').at(1))
