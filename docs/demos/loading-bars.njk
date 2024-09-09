@@ -9,6 +9,8 @@ tags: demo
   align-items: center;
   position: relative;
   gap: 5px;
+  width: 300px;
+  aspect-ratio: 4 / 3;
 
   .ball {
     --ball-size: 10px;
@@ -18,9 +20,9 @@ tags: demo
     height: calc(20px + var(--nosc-sin) * 20px);
     opacity: calc(0.5 + var(--nosc-sin) * 0.5);
 
-    &:nth-child(1) { --osc-del: 0ms; }
-    &:nth-child(2) { --osc-del: 120ms; }
-    &:nth-child(3) { --osc-del: 240ms; }
+    &:nth-child(1) { --osc-phase: 0ms; }
+    &:nth-child(2) { --osc-phase: 120ms; }
+    &:nth-child(3) { --osc-phase: 240ms; }
   }
 }
 </style>

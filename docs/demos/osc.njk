@@ -4,20 +4,21 @@ tags: demo
 ---
 
 <style>
+
 .graph {
   --bar-max-height: 50px;
   --bar-width: 10px;
   --bar-gap: 2px;
   --bar-count: 100;
-  --padding: 2rem;
+  --padding: 10px;
+
   display: flex;
   position: relative;
   align-items: center;
-  border: 4px solid hsl(from var(--color-primary) h s calc(l * 0.8) / 10%);
   height: calc(var(--bar-max-height) * 2 + var(--padding));
   gap: var(--bar-gap);
-  border-radius: 0.2rem;
   justify-content: center;
+  aspect-ratio: 16 / 9;
 
   .ball {
     /* --osc-state: paused; */
@@ -25,18 +26,20 @@ tags: demo
     --ball-size: var(--bar-width);
 
     animation: var(--osc);
-    /* --ball-height: calc(var(--osc-SIN)* var(--amp-y) * 2); */
-    /* translate: calc(var(--bar-width) / -2); */
-    /* height:  calc(10px + var(--osc-SIN) * var(--osc-amp) * var(--bar-max-height)); */
     translate: 0 calc(var(--osc-sin) * var(--osc-amp) * var(--bar-max-height));
   }
 }
 
-
 </style>
 
-<div class="mx-auto my-8 max-w-max">
-  <figure class="graph ch-x">
-    {%- include "partials/graph.html" -%}
-  </figure>
-</div>
+<figure class="graph ch-x">
+  <div class="ball" style="--osc-phase: -0.005s;"></div>
+  <div class="ball" style="--osc-phase: -0.01s;"></div>
+  <div class="ball" style="--osc-phase: -0.015s;"></div>
+  <div class="ball" style="--osc-phase: -0.02s;"></div>
+  <div class="ball" style="--osc-phase: -0.025s;"></div>
+  <div class="ball" style="--osc-phase: -0.03s;"></div>
+  <div class="ball" style="--osc-phase: -0.035s;"></div>
+  <div class="ball" style="--osc-phase: -0.04s;"></div>
+  <div class="ball" style="--osc-phase: -0.045s;"></div>
+</figure>

@@ -17,11 +17,11 @@ layout: home
     </ul>
   </section>
 
-  <ul class="flex flex-wrap gap-4">
+  <ul class="masonry">
     {%- for entry in collections.demo %}
       <li>
         <a href="{{entry.url}}">
-          <div class="bg-base-05 rounded-md size-32 aspect-square flex items-center justify-center">
+          <div class="outline">
             {{ entry.content | safe }}
           </div>
         </a>

@@ -4,11 +4,13 @@ tags: demo
 ---
 
 <style>
-.loading-spinner {
+.loading-bars {
   display: flex;
   align-items: center;
   position: relative;
   gap: 5px;
+  width: 200px;
+  aspect-ratio: 4 / 3;
 
   .ball {
     --ball-size: 20px;
@@ -23,17 +25,15 @@ tags: demo
 }
 </style>
 
-<div class="stage h-[100svh] no-ch">
-<figure class="loading-spinner">
+<figure class="loading-bars">
   <div class="ball"></div>
-  <div class="ball" style="--osc-del:  -20ms"></div>
-  <div class="ball" style="--osc-del:  -30ms"></div>
-  <div class="ball" style="--osc-del:  -50ms"></div>
-  <div class="ball" style="--osc-del:  -70ms"></div>
-  <div class="ball" style="--osc-del:  -90ms"></div>
-  <div class="ball" style="--osc-del:  -110ms"></div>
-  <div class="ball" style="--osc-del:  -130ms"></div>
-  <div class="ball" style="--osc-del:  -150ms"></div>
-  <div class="ball" style="--osc-del:  -170ms"></div>
+  <div class="ball" style="--osc-phase: -20ms"></div>
+  <div class="ball" style="--osc-phase: -30ms"></div>
+  <div class="ball" style="--osc-phase: -50ms"></div>
+  <div class="ball" style="--osc-phase: -70ms"></div>
+  <div class="ball" style="--osc-phase: -90ms"></div>
+  <div class="ball" style="--osc-phase: -110ms"></div>
+  <div class="ball" style="--osc-phase: -130ms"></div>
+  <div class="ball" style="--osc-phase: -150ms"></div>
+  <div class="ball" style="--osc-phase: -170ms"></div>
 </figure>
-</div>

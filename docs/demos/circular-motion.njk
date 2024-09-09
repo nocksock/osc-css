@@ -1,0 +1,28 @@
+---
+layout: base
+tags: demo
+---
+
+
+<figure class="circular-motion">
+  <style> 
+
+    @scope {
+      :scope {
+        display: grid;
+        place-content: center;
+      }
+      .ball {
+        --osc-cos-frequency: 0.2;
+        animation: var(--osc);
+        transform: translate(
+          calc(var(--osc-sin) * 100px),
+          calc(var(--osc-cos) * 100px)
+          );
+      }
+    } 
+
+  </style>
+
+  <div class="ball"></div>
+</figure>
