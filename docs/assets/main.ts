@@ -10,3 +10,9 @@ document.querySelectorAll('.stage').forEach(stage =>
     stage.replaceWith(newStage)
   })
 )
+
+const root = document.body
+document.addEventListener('mousemove', e => {
+  root.style.setProperty('--my', String(e.pageY / root.clientHeight))
+  root.style.setProperty('--mx', String(e.pageX / root.clientWidth))
+})
