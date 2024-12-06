@@ -2,8 +2,6 @@
   /**
     TODO: add iteration-delay (post envelope delay)
     TODO: add pulse wave (maybe with slope?)
-    TODO: phase (for sin wave (in sin()))
-    TODO: phase-offset (for each ball)
     TODO: add --osc-x (0 to 1 for total amount) 
   **/
   --_osc-time-unit: 1s;
