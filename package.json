@@ -62,6 +62,7 @@
     "@fontsource-variable/inconsolata": "^5.0.19",
     "@nocksock/tw-layout": "^0.8.1",
     "@replit/codemirror-vim": "^6.2.1",
-    "css-editor-element": "^0.1.1"
+    "css-editor-element": "^0.1.1",
+    "osc-css": "link:"
   }
 }
