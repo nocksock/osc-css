@@ -1,12 +1,12 @@
 ---
-layout: base
+layout: root
 stage: default
 ---
 
 <main class="demo">
   <figure id="stage" class="stage relative">
     {% include "stages/" + stage + ".html" %}
-    <figcaption class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center vise text-base-30 bg-base-bg">
+    <figcaption class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center vise text-base-30 bg-root-bg">
       click in stage to restart animation
     </figcaption>
   </figure>
