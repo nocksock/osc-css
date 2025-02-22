@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+  </title>
+  <link rel="stylesheet" href="./osc.css">
+  <link rel="stylesheet" href="./public/demo.css">
+</head>
+<body>
+    <header>
+      <h1>OSC.CSS</h1>
+      <p>
+        CSS props to create organic and seamlessly repeating animations using oscillators.
+      </p>
+    </header>
+
+    <main>
+      <h2>Quick Intro</h2>
+
+      <article>
+        <h3>Basic Usage</h3>
+        <p>
+          Quickly create animations without defining keyframes:
+        </p>
+
+        <figure id="basic" class="">
+          <style contenteditable="plaintext-only" spellcheck="false">
+          #basic {
+            osc-ball {
+              animation: var(--osc);
+              translate: 0 calc(var(--osc-sin) * 50px);
+            }
+          }
+          </style>
+          <osc-stage class="ch">
+            <osc-ball></osc-ball>
+          </osc-stage>
+        </figure>
+      </article>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script type="module">
+    const removeIndent = (input) => {
+      const lines = input.split('\n')
+      while (lines.length > 0 && lines.at(0).trim() === '') lines.shift()
+      while (lines.length > 0 && lines.at(-1).trim() === '') lines.pop()
+      const indentLength = lines.at(0).match(/^\s*/).at(0).length
+      return lines.map(line => line.slice(indentLength)).join('\n')
+    }
+
+    document.querySelectorAll("figure style").forEach(s => s.innerHTML = removeIndent(s.innerHTML))
+    </script>
+</body>
+</html>

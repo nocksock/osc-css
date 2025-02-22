@@ -1,0 +1,53 @@
+@import "./reset.css";
+@import "./demo_components.css" layer(demo.components);
+@import "./demo_utils.css" layer(demo.utils);
+
+@font-face {
+  font-family: "Departure Mono";
+  src:
+    url("/public/fonts/DepartureMono-Regular.woff2") format("woff2"),
+    url("/public/fonts/DepartureMono-Regular.woff") format("woff"),
+    url("/public/fonts/DepartureMono-Regular.otf") format("opentype");
+}
+
+:root {
+  color-scheme: light dark;
+
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  line-height: 1.6;
+
+  --color-soft: hsl(from currentColor h s l / 10%);
+  --text-1: 14pt;
+  --text: calc(var(--text-1) * 1.33);
+
+  font-size: var(--text-1);
+}
+
+
+body {
+  padding: 1rem;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 1;
+  gap: 1lh;
+}
+
+main> :not(:last-child) {
+  margin-bottom: 1lh;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}

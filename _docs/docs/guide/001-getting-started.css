@@ -1,6 +1,0 @@
-.ball {
-  animation: var(--osc);
-  transform: translateY(
-    calc(var(--osc-sin) * 100px)
-  );
-}

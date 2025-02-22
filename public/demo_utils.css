@@ -2,7 +2,7 @@
   position: relative;
   display: grid;
   place-content: center;
-  --stage-border: 2px dashed var(--color-20);
+  --stage-border: 2px dashed var(--color-soft);
 
   &:not(.no-ch) {
     &::before,
@@ -29,7 +29,7 @@
 
 .ch-x {
   position: relative;
-  --stage-border: 2px dashed var(--color-20);
+  --stage-border: 2px dashed var(--color-soft);
 
   &::before,
   &::after {
@@ -45,9 +45,10 @@
     right: 0;
   }
 }
+
 .ch {
   position: relative;
-  --stage-border: 2px dashed var(--color-20);
+  --stage-border: 2px dashed var(--color-soft);
 
   &::before,
   &::after {
@@ -55,6 +56,12 @@
     display:block;
     position: absolute;
     z-index: -1;
+  }
+  &::before {
+    border-left: var(--stage-border);
+    left: 50%;
+    top: 0;
+    bottom: 0;
   }
   &::after {
     border-bottom: var(--stage-border);

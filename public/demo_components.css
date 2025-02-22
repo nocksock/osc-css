@@ -1,0 +1,51 @@
+figure {
+  position: relative;
+
+  style {
+    --opacity: 50%;
+    display: block;
+    font-size: 11pt;
+    white-space: pre;
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    padding: 1rem;
+  border-radius: 0.5rem;
+    overflow: auto;
+    color: hsl(from currentColor h s l / var(--opacity));
+    &:focus {
+      --opacity: 100%;
+    }
+  }
+}
+
+osc-ball {
+  display: block;
+
+}
+
+osc-ball {
+  --_ball-size: var(--ball-size, 24px);
+  background: currentColor;
+  width: var(--_ball-size);
+  height: var(--_ball-size);
+  border-radius: 100%;
+}
+
+osc-dot {
+  --_ball-size: var(--ball-size, 2px);
+  background: currentColor;
+  width: var(--_ball-size);
+  height: var(--_ball-size);
+}
+
+osc-stage {
+  display: block;
+  aspect-ratio: 16/9;
+  display: grid;
+  grid: 1;
+  place-content: center;
+  aspect-ratio: 16/9;
+  background: hsl(from currentColor h s l / 10%);
+  border-radius: 0.5rem;
+}
