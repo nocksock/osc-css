@@ -11,7 +11,7 @@
     "trigonometry"
   ],
   "unpkg": "osc.css",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "CSS properties to animate numeric values where they are needed using oscillators and envelopes.",
   "files": [
     "osc.css"
