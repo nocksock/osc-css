@@ -1,12 +1,10 @@
 # OSC.CSS
 
-Easily create smooth, organic animations, that loop seamlessly - or not - using oscillators.
+CSS properties to animate numeric values where they are needed using oscillators and envelopes.
 
-- No Dependencies
-- Pure CSS
-- 6[^1] free running, independent Oscillators, each through zero + normalised.
-- 4 Voices by default
-- One DAHD envelope per voice
+- Pure CSS, 0 dependencies
+- 4 free running, independent Oscillators, each through zero + normalised.
+- One DAHD envelope
 
 ## Quick intro if you know audio synthesis
 
