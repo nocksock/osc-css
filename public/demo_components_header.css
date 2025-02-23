@@ -1,0 +1,12 @@
+body > header {
+    min-height: 90svh;
+    display: grid;
+    place-content: center;
+    h1 {
+       font-size: 4rem;
+        font-weight: 900;
+        text-align: center;
+        color: black;
+        text-shadow: 0 0 30px lch(8% 80% 205deg);
+    }
+}

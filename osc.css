@@ -1,9 +1,17 @@
+/** ; v0.5.6 ; LICENSE: MIT Copyright (c) 2025 Nils Riedemann
+
+      ___     ____    ___        ___    ____    ____
+     / __`\  /',__\  /'___\     /'___\ /',__\  /',__\
+    /\ \L\ \/\__, `\/\ \__/  __/\ \__//\__, `\/\__, `\
+    \ \____/\/\____/\ \____\/\_\ \____\/\____/\/\____/
+     \/___/  \/___/  \/____/\/_/\/____/\/___/  \/___/
+
+    CSS properties to animate numeric values where they are needed
+    using oscillators and envelopes.
+
+    https://osc.style/
+*/
 :where(*) {
-  /**
-    TODO: add iteration-delay (post envelope delay)
-    TODO: add pulse wave (maybe with slope?)
-    TODO: add --osc-x (0 to 1 for total amount) 
-  **/
   --_osc-time-unit: 1s;
   --_osc-state: var(--osc-state, running);
   --_osc-amp-iterations: var(--osc-amp-iterations, infinite);
@@ -20,33 +28,35 @@
   --_osc-saw-phase: calc(var(--_osc-all-phase) + var(--osc-saw-phase, 0s));
   --_osc-tri-phase: calc(var(--_osc-all-phase) + var(--osc-tri-phase, 0s));
 
+  /* TODO: feat: add iteration-delay (post envelope delay, poc: https://codepen.io/nocksock/pen/rNEPMjJ) */
   --_osc-delay-amount:  var(--osc-delay);
   --_osc-attack-amount: var(--osc-attack);
   --_osc-hold-amount:   var(--osc-hold);
   --_osc-decay-amount:  var(--osc-decay);
 
   --_osc-env-total: calc(
-    var(--_osc-delay-amount) + 
-    var(--_osc-attack-amount) + 
-    var(--_osc-hold-amount) + 
+    var(--_osc-delay-amount) +
+    var(--_osc-attack-amount) +
+    var(--_osc-hold-amount) +
     var(--_osc-decay-amount)
   );
-  
+
   --_osc-delay-start:   calc( var(--_osc-delay-amount)  / var(--_osc-env-total) * 100%);
   --_osc-attack-start:  calc((var(--_osc-delay-amount)  + var(--_osc-attack-amount)) / var(--_osc-env-total) * 100%);
   --_osc-hold-start:    calc((var(--_osc-attack-amount) + var(--_osc-hold-amount))   / var(--_osc-env-total) * 100%);
   --_osc-decay-start:   calc( var(--_osc-hold-start));
 
-  --_osc-envelope-ahd: linear(0 0%, 
+  --_osc-envelope-ahd: linear(0 0%,
       0 var(--_osc-delay-start),
       1 var(--_osc-attack-start),
       1 var(--_osc-hold-start),
       1 var(--_osc-decay-start),
-      0 
+      0
     );
 
   --_osc-envelope: var(--osc-envelope, var(--_osc-envelope-ahd));
 
+  /* TODO: add pulse wave (maybe w/ slope parameter?) */
   --osc-only-sin: calc(1s / var(--_osc-sin-frequency)) linear var(--_osc-sin-phase) infinite osc-sin var(--_osc-state);
   --osc-only-cos: calc(1s / var(--_osc-cos-frequency)) linear var(--_osc-cos-phase) infinite osc-cos var(--_osc-state);
   --osc-only-saw: calc(1s / var(--_osc-saw-frequency)) linear var(--_osc-saw-phase) infinite osc-saw var(--_osc-state);
@@ -54,7 +64,7 @@
 
   --osc-only-envelope: calc(var(--_osc-env-total) * var(--_osc-time-unit)) var(--_osc-envelope) var(--_osc-all-phase) forwards var(--_osc-amp-iterations) osc-amp var(--_osc-state);
 
-  --osc: 
+  --osc:
     var(--osc-only-envelope),
     var(--osc-only-sin),
     var(--osc-only-cos),
@@ -62,6 +72,7 @@
     var(--osc-only-tri)
   ;
 
+  /* TODO: compare performance and behaviour of ease-in-out vs calculation */
   --osc-sin: calc(sin(var(--osc-_sin) * pi ));
   --osc-cos: calc(cos(var(--osc-_cos) * pi ));
 
@@ -72,7 +83,6 @@
   --osc-TRI: calc((1 + var(--osc-tri)) / 2);
 }
 
-/* TODO: declare missing properties (makes it easier to debug) */
 /* - wave forms - */
 
 @property --osc-_sin { syntax: "<number>"  ; initial-value: 0 ; inherits: true ; }
@@ -87,8 +97,7 @@
 @keyframes osc-saw { from { --osc-saw: -1; } to { --osc-saw:  1; } }
 @keyframes osc-amp { from { --osc-amp:  0; } to { --osc-amp:  1; } }
 
-
-/* ;--: amp envelope ; */
+/* - amp envelope - */
 @property --osc-attack         { syntax: "<number>"  ; initial-value: 1 ; inherits: true ; }
 @property --osc-delay          { syntax: "<number>"  ; initial-value: 1 ; inherits: true ; }
 @property --osc-hold           { syntax: "<number>"  ; initial-value: 1 ; inherits: true ; }
@@ -104,3 +113,5 @@
 @property --_osc-attack-start  { syntax: "<percent>" ; initial-value: 0 ; inherits: true ; }
 @property --_osc-hold-start    { syntax: "<percent>" ; initial-value: 0 ; inherits: true ; }
 @property --_osc-decay-start   { syntax: "<percent>" ; initial-value: 0 ; inherits: true ; }
+
+/* TODO: declare any missing properties (also makes debugging easier) */
