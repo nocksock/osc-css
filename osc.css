@@ -54,7 +54,7 @@
   --osc-only-sin: calc(1s / var(--_osc-sin-frequency)) linear var(--_osc-sin-phase) infinite osc-sin var(--_osc-state);
   --osc-only-cos: calc(1s / var(--_osc-cos-frequency)) linear var(--_osc-cos-phase) infinite osc-cos var(--_osc-state);
   --osc-only-saw: calc(1s / var(--_osc-saw-frequency)) linear var(--_osc-saw-phase) infinite osc-saw var(--_osc-state);
-  --osc-only-tri: calc(2s / var(--_osc-tri-frequency)) linear var(--_osc-tri-phase) alternate infinite osc-tri var(--_osc-state);
+  --osc-only-tri: calc(1s / var(--_osc-tri-frequency)) linear var(--_osc-tri-phase) alternate infinite osc-tri var(--_osc-state);
 
   --osc-only-envelope: calc(var(--_osc-env-total) * var(--_osc-time-unit)) var(--_osc-envelope) var(--_osc-global-phase) forwards var(--_osc-env-iterations) osc-env var(--_osc-state);
 
