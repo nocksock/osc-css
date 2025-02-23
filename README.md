@@ -96,9 +96,13 @@ Each oscillator can be configured independently, where `*` must be one of: `sin,
 - `--osc-*-frequency`: frequency of waveform (overrides global frequency)
 - `--osc-*-phase`: Phase offset for individual waveform
 
-### Envelope Generator Settings
+### Envelope Generator
 
 The DAHD (Delay-Attack-Hold-Decay) envelope can be configured with these parameters:
+
+- `--osc-env`: The envelope value. Range: `0...1` (DAHD)
+
+#### Settings
 
 - `--osc-delay`: Delay time before envelope starts
 - `--osc-attack`: Attack time (fade in)
