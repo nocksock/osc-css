@@ -1,4 +1,4 @@
-> [!WARN]
+> [!WARNING]
 > This project is still in early development and not yet ready for production use. Braking API changes are to be expected.
 
 # OSC.CSS
