@@ -1,3 +1,6 @@
+> [!WARN]
+> This project is still in early development and not yet ready for production use. Braking API changes are to be expected.
+
 # OSC.CSS
 
 CSS properties to animate numeric values where they are needed using oscillators and envelopes.
@@ -18,6 +21,15 @@ The envelope generator can loop or run a fixed amount of iterations.
 FM is possible, but not yet documented - the API for that is work in progress.
 
 ## Installation
+
+### Recommended way
+
+Copy the `osc.css` file into your project and import it.
+
+```bash
+wget https://raw.githubusercontent.com/nocksock/osc-css/main/osc.css \
+    -O path/to/assets/osc.css
+```
 
 ### As package
 

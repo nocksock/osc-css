@@ -9,10 +9,8 @@
 
   --color-soft: hsl(from currentColor h s l / 10%);
   --color-accent: lch(100% 100% 104deg);
-  --text-1: 14pt;
-  --text: calc(var(--text-1) * 1.33);
 
-  font-size: var(--text-1);
+  font-size: 12pt;
 }
 
 body {
@@ -23,7 +21,6 @@ body {
   display: grid;
   grid-template-columns: 1;
   gap: 1lh;
-  background-color: black;
 }
 
 main> :not(:last-child) {
