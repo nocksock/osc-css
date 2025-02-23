@@ -6,7 +6,7 @@ CSS properties to animate numeric values where they are needed using oscillators
 - 4 free running, independent Oscillators, each through zero + normalised.
 - One DAHD envelope
 
-## Quick intro if you know audio synthesis
+## Overview for audio synthesis buffs
 
 If you're familiar with audio synthesis, it will be faster to give an overview:
 
@@ -19,11 +19,34 @@ FM is possible, but not yet documented - the API for that is work in progress.
 
 ## Installation
 
+### As package
+
+```bash
+npm install osc-css
+```
+
+In your CSS file:
+
+```css
+@import "osc-css/osc.css";
+```
+
+Import via esm coming very soon.
+
+
+### Via CDN
+
+```css
+@import "https://unpkg.com/osc-css";
+```
+
 ## Usage
 
 ```css
 .wiggle {
     animation: var(--osc);
+    /* use any of the oscillators in your calculations */
+    /* this rotate from -20deg to 20deg, use --osc-SIN to go from 0...1 */
     rotate: calc(var(--osc-sin) * 20deg);
 }
 ```
@@ -35,10 +58,10 @@ So you must not include a unit when changing time-based properties.
 
 ### Global Settings
 
-- `--osc-state`: Controls animation state. Values: `running` (default) or `paused`
+- `--osc-state`: Controls [animation state]. Values: `running` (default) or `paused`
 - `--osc-amp-iterations`: Number of times the envelope repeats. Default: `infinite`
-- `--osc-all-phase`: Global phase offset for all oscillators in seconds. Default: `0s`
-- `--osc-frequency`: the frequency in Hz; But **without unit**, since no browser has actually implemented it at the moment. Default: 2
+- `--osc-all-phase`: The global phase offset for all oscillators in seconds. Default: `0s`
+- `--osc-all-frequency`: The global frequency in Hz; But **without unit**, since no browser has actually implemented it at the moment. Default: 2
 
 ### Oscillators
 
@@ -53,7 +76,6 @@ So you must not include a unit when changing time-based properties.
 - `--osc-COS`: Cosine Wave. Range: `0...1` (ease-in-out)
 - `--osc-SAW`: Saw Wave. Range: `0...1` (linear)
 - `--osc-TRI`: Triangle Wave. Range: `0...1` (linear)
-
 
 ### Individual Oscillator Settings
 
@@ -74,10 +96,7 @@ The DAHD (Delay-Attack-Hold-Decay) envelope can be configured with these paramet
 ### Animation Utilities
 
 - `--osc`: Combines all oscillators and envelope into a single animation property
-- `--osc-only-sin`: Isolated sine wave animation
-- `--osc-only-cos`: Isolated cosine wave animation
-- `--osc-only-saw`: Isolated saw wave animation
-- `--osc-only-tri`: Isolated triangle wave animation
+- `--osc-only-*`: Isolated wave animation
 - `--osc-only-envelope`: Isolated envelope animation
 
 ## Examples
@@ -86,20 +105,22 @@ The DAHD (Delay-Attack-Hold-Decay) envelope can be configured with these paramet
 /* Basic oscillating animation */
 .element {
   animation: var(--osc);
-  transform: translateX(calc(var(--osc-sin) * 100px));
+  translate: 0 calc(var(--osc-sin) * 100px)); /* -100px...100px */
 }
 
 /* Custom frequency and envelope */
 .custom-animation {
     animation: var(--osc);
-  --osc-frequency: 0.5;
-  --osc-attack: 2;
-  --osc-hold: 1;
-  --osc-decay: 3;
+    --osc-frequency: 0.5;
+    --osc-attack: 2;
+    --osc-hold: 1;
+    --osc-decay: 3;
 }
 
-/* Using normalized oscillators */
+/* Using normalized (0...1) oscillators */
 .fade {
     animation: var(--osc);
     opacity: var(--osc-SIN);
 }
+
+[animation state]: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state
