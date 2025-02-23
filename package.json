@@ -17,13 +17,6 @@
     "osc.css"
   ],
   "main": "demo.css",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "release:minor": "pnpm version minor && pnpm publish --no-git-checks",
-    "release:patch": "pnpm version patch && pnpm publish --no-git-checks",
-    "release:canary": "pnpm version prerelease --preid=canary && pnpm publish --tag canary"
-  },
   "author": "Nils Riedemann",
   "homepage": "https://osc.style/",
   "repository": {
