@@ -1,5 +1,5 @@
 > [!WARNING]
-> This project is still in early development and not yet ready for production use. Braking API changes are to be expected.
+> This project is still in development and not yet ready for production use. Braking API changes are to be expected.
 
 # OSC.CSS
 
@@ -71,9 +71,9 @@ So you must not include a unit when changing time-based properties.
 ### Global Settings
 
 - `--osc-state`: Controls [animation state]. Values: `running` (default) or `paused`
-- `--osc-amp-iterations`: Number of times the envelope repeats. Default: `infinite`
-- `--osc-all-phase`: The global phase offset for all oscillators in seconds. Default: `0s`
-- `--osc-all-frequency`: The global frequency in Hz; But **without unit**, since no browser has actually implemented it at the moment. Default: 2
+- `--osc-env-iterations`: Number of times the envelope repeats. Default: `infinite`
+- `--osc-phase`: The global phase offset for all oscillators in seconds. Default: `0s`
+- `--osc-frequency`: The global frequency in Hz; But **without unit**, since no browser has actually implemented it at the moment. Default: 2
 
 ### Oscillators
 
@@ -118,6 +118,8 @@ The DAHD (Delay-Attack-Hold-Decay) envelope can be configured with these paramet
 .element {
   animation: var(--osc);
   translate: 0 calc(var(--osc-sin) * 100px)); /* -100px...100px */
+  /* or with envelope */
+  translate: 0 calc(var(--osc-sin) * 100px * var(--osc-env)); 
 }
 
 /* Custom frequency and envelope */
@@ -134,5 +136,13 @@ The DAHD (Delay-Attack-Hold-Decay) envelope can be configured with these paramet
     animation: var(--osc);
     opacity: var(--osc-SIN);
 }
+```
+
+
+## Caveats
+
+The calculations can easily become *very demanding* on the browser, especially when using
+using the envelope generator and all oscillators at the same time; which is the default. 
+Treat it similar to `transition: all` and always refactor to only use the oscilattors you need.
 
 [animation state]: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state

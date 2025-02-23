@@ -1,0 +1,25 @@
+figure {
+  position: relative;
+  width: 100%;
+
+  style {
+    --opacity: 50%;
+
+    display: block;
+    font-size: 11pt;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+    white-space: pre;
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow: auto;
+    color: hsl(from currentColor h s l / var(--opacity));
+
+    &:focus {
+      --opacity: 100%;
+    }
+  }
+}
+

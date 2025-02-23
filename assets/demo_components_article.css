@@ -1,0 +1,10 @@
+article {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  & > :not(:last-child) {
+    margin-bottom: 1rlh;
+  }
+}

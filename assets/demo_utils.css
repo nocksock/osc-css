@@ -70,3 +70,13 @@
     right: 0;
   }
 }
+
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+inline-block {
+  display: inline-block;
+}

@@ -9,15 +9,17 @@
 </head>
 <body>
     <header>
-      <h1>OSC.CSS</h1>
+      <h1>OSC<span>.</span>CSS</h1>
       <p>
-        CSS props to create organic and seamlessly repeating animations using oscillators.
+        CSS properties to animate numeric values where they are needed using oscillators and envelopes.
+      </p>
+
+      <p>
+        Docs on <a href="http://github.com/nocksock/osc-css">GitHub</a>
       </p>
     </header>
 
     <main>
-      <h2>Quick Intro</h2>
-
       <article>
         <h3>Basic Usage</h3>
         <p>
@@ -29,12 +31,70 @@
           #basic {
             osc-ball {
               animation: var(--osc);
-              translate: 0 calc(var(--osc-sin) * 50px);
+              --osc-phase: 0.25s; 
+              translate: 0 calc(var(--osc-sin) * 100px);
             }
           }
           </style>
           <osc-stage class="ch">
             <osc-ball></osc-ball>
+          </osc-stage>
+        </figure>
+      </article>
+
+      <article>
+        <h3>Using an envelope</h3>
+        <p>
+          Use an envelope to control the amplitude of the oscillation.
+          Also show how to use multiple oscillators.
+          Even just 2 oscillators can create complex animations.
+        </p>
+
+        <figure id="envelope" class="">
+          <style contenteditable="plaintext-only" spellcheck="false">
+          #envelope {
+            osc-ball {
+              animation: var(--osc);
+              --osc-cos-phase: 0.25s;
+              translate: 
+                calc(var(--osc-cos) * 100px * var(--osc-env))
+                calc(var(--osc-tri) * 200px * var(--osc-env))
+              ;
+            }
+          }
+          </style>
+          <osc-stage class="ch">
+            <osc-ball></osc-ball>
+          </osc-stage>
+        </figure>
+      </article>
+
+      <article>
+        <h3>Waveform</h3>
+        <p>
+          Useful to visualise a calculation, but rather heavy on the browser.
+        </p>
+
+        <figure id="waveform" class="">
+          <style contenteditable="plaintext-only" spellcheck="false">
+            #waveform {
+              osc-dot {
+                animation: var(--osc);
+                --osc-state: paused; /* change this to running */
+                translate: 0 calc(var(--osc-sin) * 40px * var(--osc-env));
+              }
+            }
+          </style>
+          <osc-stage class="ch waveform">
+            <script type="module">
+
+            // replace this script tag with 100 osc-dot elements
+            for (let i = 0; i < 100; i++) {
+              const dot = document.createElement('osc-dot')
+              dot.style.setProperty('--osc-phase', `${i / 100}s`)
+              document.querySelector('#waveform osc-stage').append(dot)
+            }
+            </script>
           </osc-stage>
         </figure>
       </article>
