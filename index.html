@@ -6,16 +6,14 @@
   </title>
   <link rel="stylesheet" href="./osc.css">
   <link rel="stylesheet" href="./assets/demo.css">
+  <script defer data-domain="osc.style" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
     <header>
       <h1>OSC<span>.</span>CSS</h1>
       <p>
         CSS properties to animate numeric values where they are needed using oscillators and envelopes.
-      </p>
-
-      <p>
-        Docs on <a href="http://github.com/nocksock/osc-css">GitHub</a>
+        Source available on <a href="http://github.com/nocksock/osc-css">GitHub</a>
       </p>
     </header>
 
@@ -26,7 +24,7 @@
           Quickly create animations without defining keyframes:
         </p>
 
-        <figure id="basic" class="">
+        <figure id="basic">
           <style contenteditable="plaintext-only" spellcheck="false">
           #basic {
             osc-ball {
@@ -36,21 +34,72 @@
             }
           }
           </style>
-          <osc-stage class="ch">
+          <osc-stage class="ch-x">
             <osc-ball></osc-ball>
           </osc-stage>
         </figure>
       </article>
 
       <article>
+        <h3>Comparing different oscillators</h3>
+        <p>
+          There are two versions of each oscillator:
+        </p>
+
+        <ul class="numbered">
+          <li>Lowercase oscillators go from -1 to 1
+          <li>Uppercase go from 0 to 1.
+        </ul>
+
+        <figure id="compare" class="nocode">
+          <style>
+            #compare {
+              osc-stage {
+                display: flex;
+                align-items: stretch;
+                justify-content: space-around;
+                padding: 5%;
+                font-family: var(--font-mono);
+                z-index: -2;
+                box-sizing: border-box;
+                container: stage / size;
+              }
+
+              osc-lane {
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                font-size: 6cqb;
+                animation: var(--osc);
+                z-index: 1;
+                background:  hsl(from Canvas h s l / 0.3);
+                border-radius: 999px;
+                box-shadow: inset 2px 2px 2px hsl(from Canvas h s l / 0.3);
+              }
+            }
+          </style>
+          <osc-stage class="ch-x">
+            <osc-lane style="--use-osc: var(--osc-sin)">sin</osc-lane>
+            <osc-lane style="--use-osc: var(--osc-cos)">cos</osc-lane>
+            <osc-lane style="--use-osc: var(--osc-saw)">saw</osc-lane>
+            <osc-lane style="--use-osc: var(--osc-tri)">tri</osc-lane>
+            <osc-lane style="--use-osc: var(--osc-SIN)">SIN</osc-lane>
+            <osc-lane style="--use-osc: var(--osc-COS)">COS</osc-lane>
+            <osc-lane style="--use-osc: var(--osc-SAW)">SAW</osc-lane>
+            <osc-lane style="--use-osc: var(--osc-TRI)">TRI</osc-lane>
+          </osc-stage>
+        </figure>
+      </article>
+      <article>
         <h3>Using an envelope</h3>
         <p>
           Use an envelope to control the amplitude of the oscillation.
-          Also show how to use multiple oscillators.
-          Even just 2 oscillators can create complex animations.
+          Note how a simple setup with 2 oscillators and the envelope can create a complex animation.
         </p>
 
-        <figure id="envelope" class="">
+        <figure id="envelope">
           <style contenteditable="plaintext-only" spellcheck="false">
           #envelope {
             osc-ball {
@@ -69,13 +118,24 @@
         </figure>
       </article>
 
+      
+
       <article>
         <h3>Waveform</h3>
         <p>
-          Useful to visualise a calculation, but rather heavy on the browser.
+          Useful to visualise a calculation. 
+          But since ther are many elements, this gets rather heavy on the browser, so you need to enable it by changing the value of the --osc-state property.
         </p>
 
-        <figure id="waveform" class="">
+        <figure id="waveform">
+          <style>
+          #waveform osc-stage{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 5%;
+          }
+          </style>
           <style contenteditable="plaintext-only" spellcheck="false">
             #waveform {
               osc-dot {
@@ -85,7 +145,7 @@
               }
             }
           </style>
-          <osc-stage class="ch waveform">
+          <osc-stage class="ch-x">
             <script type="module">
 
             // replace this script tag with 100 osc-dot elements

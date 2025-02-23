@@ -1,9 +1,11 @@
 body>header {
-  h1 {
-    color: black;
-    font-family: var(--font-mono);
-    font-weight: 900;
+  max-width: 60ch;
+  font-size: 1.25rem;
+  margin: 2rem auto;
 
+  h1 {
+    font-family: var(--font-mono);
+    margin-bottom: 2rem;
 
     span {
       display: inline-block;
