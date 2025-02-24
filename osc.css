@@ -29,10 +29,10 @@
   --_osc-tri-phase: calc(var(--_osc-global-phase) + var(--osc-tri-phase, 0s));
 
   /* TODO: feat: add iteration-delay (post envelope delay, poc: https://codepen.io/nocksock/pen/rNEPMjJ) */
-  --_osc-env-delay: var(--osc-delay, 0);
-  --_osc-env-attack: var(--osc-attack, 0);
-  --_osc-env-hold: var(--osc-hold, 0);
-  --_osc-env-decay: var(--osc-decay, 1);
+  --_osc-env-delay: var(--env-delay, 0);
+  --_osc-env-attack: var(--env-attack, 0);
+  --_osc-env-hold: var(--env-hold, 0);
+  --_osc-env-decay: var(--env-decay, 1);
 
   --_osc-env-total: calc(var(--_osc-env-delay) + var(--_osc-env-attack) + var(--_osc-env-hold) + var(--_osc-env-decay));
 
@@ -56,7 +56,7 @@
   --osc-only-saw: calc(1s / var(--_osc-saw-frequency)) linear var(--_osc-saw-phase) infinite osc-saw var(--_osc-state);
   --osc-only-tri: calc(1s / var(--_osc-tri-frequency)) linear var(--_osc-tri-phase) alternate infinite osc-tri var(--_osc-state);
 
-  --osc-only-envelope: calc(var(--_osc-env-total) * var(--_osc-time-unit)) var(--_osc-envelope) var(--_osc-global-phase) forwards var(--_osc-env-iterations) osc-env var(--_osc-state);
+  --osc-only-envelope: calc(var(--_osc-env-total) * var(--_osc-time-unit)) var(--_osc-envelope) var(--_osc-global-phase) forwards var(--_osc-env-iterations) env-amp var(--_osc-state);
 
   --osc:
     var(--osc-only-envelope),
@@ -83,15 +83,16 @@
 @property --osc-_cos { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
 @property --osc-tri  { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
 @property --osc-saw  { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
-@property --osc-env  { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
 
 @keyframes osc-sin { from { --osc-_sin: -1; } to { --osc-_sin:  1; } }
 @keyframes osc-cos { from { --osc-_cos: -1; } to { --osc-_cos:  1; } }
 @keyframes osc-tri { from { --osc-tri: -1; } to { --osc-tri:  1; } }
 @keyframes osc-saw { from { --osc-saw: -1; } to { --osc-saw:  1; } }
-@keyframes osc-env { from { --osc-env:  0; } to { --osc-env:  1; } }
 
 /* - amp envelope - */
+@property --env-amp  { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
+@keyframes env-amp { from { --env-amp:  0; } to { --env-amp:  1; } }
+
 @property --_osc-env-total     { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
 @property --_osc-env-delay     { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
 @property --_osc-env-attack    { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
