@@ -1,4 +1,5 @@
 @import "./reset.css" layer(demo.base);
+@import "./demo_base.css" layer(demo.base);
 @import "./demo_type.css" layer(demo.base);
 @import "./demo_components.css" layer(demo.components);
 @import "./demo_utils.css" layer(demo.utils);
@@ -23,46 +24,4 @@
 
   color: var(--color-fg);
   background: var(--color-bg);
-}
-
-@layer demo.base {
-  body {
-    margin: 4rem;
-    display: grid;
-    grid-template-columns: 1;
-    gap: 1rem;
-    scroll-snap-type: y mandatory;
-    article {
-      scroll-snap-align: center;
-      min-height: 75svh;
-    }
-  }
-
-  ol, ul {
-    padding-left: 3rem;
-  }
-
-  ul.numbered {
-    list-style-type: decimal;
-  }
-
-  main {
-    display: contents;
-  }
-
-  main> :not(:last-child) {
-    margin-bottom: 1rem;
-  }
-
-  article {
-    margin: 4rem auto;
-    min-height: 100vh;
-    max-width: 60ch;
-    width: 100%;
-    display: grid;
-    align-content: center;
-    & > :not(:last-child) {
-      margin-bottom: 1rlh;
-    }
-  }
 }

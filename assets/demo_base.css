@@ -1,0 +1,56 @@
+  body {
+    margin: 4rem;
+    display: grid;
+    grid-template-columns: 1;
+    gap: 1rem;
+    scroll-snap-type: y mandatory;
+    article {
+      scroll-snap-align: center;
+      min-height: 75svh;
+    }
+  }
+
+  ol, ul {
+    padding-left: 3rem;
+  }
+
+  ul.numbered {
+    list-style-type: decimal;
+  }
+
+  main {
+    display: contents;
+  }
+
+  main> :not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  article {
+    margin: 4rem auto;
+    min-height: 100vh;
+    max-width: 60ch;
+    width: 100%;
+    display: grid;
+    align-content: center;
+    & > :not(:last-child) {
+      margin-bottom: 1rlh;
+    }
+
+    figure + figure {
+      margin-top: 25svh;
+    }
+  }
+
+  body > footer {
+    margin: 4rem auto;
+    max-width: 60ch;
+    font-size: 0.8rem;
+    text-align: center;
+    opacity: 0.5;
+  }
+
+  :where(h2, h3, h4, h5, h6) a:where(:visited, :link) {
+    color: var(--color-accent);
+    text-decoration-color: hsl(from currentColor h s l / 0.5);
+  }

@@ -11,21 +11,20 @@
 
   <script type="module">
     // turn every headline into a link
-    ['h2', 'h3', 'h4'].forEach(tag => {
+    ['h2', 'h3', 'h4', 'h5', 'h6'].forEach(tag => {
       document.querySelectorAll(tag).forEach(h => {
         const id = h.textContent.toLowerCase().replace(/[^a-z]/g, '-')
         h.id = id
         h.innerHTML = `<a href="#${id}">${h.innerHTML}</a>`
       })
     })
+
   </script>
 </head>
 <body>
     <header>
       <h1>
-        <span>OSC</span>
-        <span>.</span>
-        <span>CSS</span>
+        <span>OSC</span> <span>.</span> <span>CSS</span>
       </h1>
       <p>
         CSS properties to animate numeric values where they are needed using oscillators and envelopes.
@@ -51,12 +50,14 @@
         </p>
 
         <figure id="basic">
-          <style contenteditable="plaintext-only" spellcheck="false">
-          #basic osc-ball {
-            animation: var(--osc);
-            translate: 0 calc(var(--osc-sin) * 100px);
-          }
-          </style>
+          <css-editor>
+            <style contenteditable="plaintext-only" spellcheck="false">
+            #basic osc-ball {
+              animation: var(--osc);
+              translate: 0 calc(var(--osc-sin) * 100px);
+            }
+            </style>
+          </css-editor>
           <osc-stage class="ch-x">
             <osc-ball></osc-ball>
           </osc-stage>
@@ -137,15 +138,17 @@
 
 
         <figure id="envelope">
-          <style contenteditable="plaintext-only" spellcheck="false">
-          #envelope osc-ball {
-            animation: var(--osc);
-            translate: 
-              calc(var(--osc-cos) * 100px * var(--env-amp))
-              calc(var(--osc-tri) * 280px)
-            ;
-          }
-          </style>
+          <css-editor>
+            <style contenteditable="plaintext-only" spellcheck="false">
+            #envelope osc-ball {
+              animation: var(--osc);
+              translate: 
+                calc(var(--osc-cos) * 100px * var(--env-amp))
+                calc(var(--osc-tri) * 280px)
+              ;
+            }
+            </style>
+          </css-editor>
           <osc-stage class="ch">
             <osc-ball></osc-ball>
           </osc-stage>
@@ -174,17 +177,19 @@
             padding: 5%;
           }
           </style>
-          <style contenteditable="plaintext-only" spellcheck="false">
-            #waveform osc-dot {
-              --osc-frequency: 2;
-              --env-delay: 1;
-              --env-attack: 1;
-              --env-hold: 1;
-              --env-decay: 1;
-              translate: 0 calc(var(--osc-sin) * 40px * var(--env-amp));
-              animation: var(--osc);
-            }
-          </style>
+          <css-editor>
+            <style contenteditable="plaintext-only" spellcheck="false">
+              #waveform osc-dot {
+                --osc-frequency: 2;
+                --env-delay: 1;
+                --env-attack: 1;
+                --env-hold: 1;
+                --env-decay: 1;
+                translate: 0 calc(var(--osc-sin) * 40px * var(--env-amp));
+                animation: var(--osc);
+              }
+            </style>
+          </css-editor>
           <osc-stage class="ch-x">
             <script type="module">
             for (let i = 0; i < 75; i++) {
@@ -221,21 +226,25 @@
               But I like what it does!
             </p>
           </figcaption>
-          <style>
-          #creative-01 osc-dot {
-            animation: var(--osc);
-            --osc-frequency: 0.5;
-            --osc-sin-frequency: 1;
-            border-radius: 0;
-            transform: skew(calc(var(--osc-sin) * 100deg) calc(var(--osc-cos) * 20deg));
-            translate: 
-              calc(var(--osc-sin) * 50px * var(--env-amp))
-              calc(var(--osc-cos) * 50px * log(var(--env-amp)))
-            ;
-            rotate: calc(var(--osc-saw) * 360deg);
-            scale: calc(var(--osc-tri) * 10);
-          }
-          </style>
+
+          <css-editor>
+            <style>
+              #creative-01 osc-dot {
+                animation: var(--osc);
+                --osc-frequency: 0.5;
+                --osc-sin-frequency: 1;
+                border-radius: 0;
+                transform: skew(calc(var(--osc-sin) * 100deg) calc(var(--osc-cos) * 20deg));
+                translate: 
+                  calc(var(--osc-sin) * 50px * var(--env-amp))
+                  calc(var(--osc-cos) * 50px * log(var(--env-amp)))
+                ;
+                rotate: calc(var(--osc-saw) * 360deg);
+                scale: calc(var(--osc-tri) * 10);
+              }
+            </style>
+          </css-editor>
+
           <osc-stage create="osc-dot" count="8" phased>
           </osc-stage>
         </figure>
@@ -247,16 +256,18 @@
               Looks like a ball doing a stomp attack to me.
             </p>
           </figcaption>
-          <style>
-          #create-02 osc-ball {
-            animation: var(--osc);
-            translate: 0 calc(min(var(--osc-sin), var(--osc-saw)) * -150px);
-            scale: 
-              calc(2 + var(--osc-tri) * 20)
-              calc(2 + var(--osc-sin) * 10)
-            ;
-          }
-          </style>
+          <css-editor>
+            <style contenteditable="plaintext-only" spellcheck="false">
+            #create-02 osc-ball {
+              animation: var(--osc);
+              translate: 0 calc(min(var(--osc-sin), var(--osc-saw)) * -150px);
+              scale: 
+                calc(2 + var(--osc-tri) * 20)
+                calc(2 + var(--osc-sin) * 10)
+              ;
+            }
+            </style>
+          </css-editor>
           <osc-stage>
             <osc-ball></osc-ball>
           </osc-stage>
@@ -264,7 +275,7 @@
 
         <figure id="creative-03">
           <figcaption>
-            Don't forget about colors and gradients and make trippy visuals!
+            Don't forget about colors and gradients and make trippy visuals for your next big gig.
           </figcaption>
 
           <style>
@@ -328,23 +339,12 @@
     </main>
 
     <footer>
-
       <p>
         made by <a href="https://bleepbloop.studio">bleepbloop.studio</a>
       </p>
-
     </footer>
 
     <script type="module">
-    const removeIndent = (input) => {
-      const lines = input.split('\n')
-      while (lines.length > 0 && lines.at(0).trim() === '') lines.shift()
-      while (lines.length > 0 && lines.at(-1).trim() === '') lines.pop()
-      const indentLength = lines.at(0).match(/^\s*/).at(0).length
-      return lines.map(line => line.slice(indentLength)).join('\n')
-    }
-
-    document.querySelectorAll("figure style").forEach(s => s.innerHTML = removeIndent(s.innerHTML))
     </script>
 </body>
 </html>

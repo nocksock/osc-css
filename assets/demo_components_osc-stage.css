@@ -1,0 +1,16 @@
+osc-stage {
+  overflow: clip;
+  display: grid;
+  place-content: center;
+  position: relative;
+  aspect-ratio: 16/9;
+  pointer-events: none;
+  z-index: -1;
+  background-image: 
+    radial-gradient(
+      hsl(from var(--color-sheet) h s l / 20%),
+      hsl(from var(--color-sheet) h s l / 100%) 150%)
+    ;
+
+  border-radius: 0.5rem;
+}

@@ -1,5 +1,6 @@
 @import "./demo_components_figure.css";
 @import "./demo_components_header.css";
+@import "./demo_components_osc-stage.css";
 
 osc-ball {
   display: block;
@@ -38,8 +39,9 @@ osc-lane {
   position: relative;
   border-radius: 999px;
   box-shadow: inset 4px 4px 0px hsl(from black h s l / 0.3);
-  border: 2px dashed hsl(from var(--color-sheet) h s l / 0.8);
+  border: 2px dashed hsl(from var(--color-fg) h s l / 0.3 );
   padding: 0.25ch 0.5ch;
+  background: var(--color-black);
 
   &::before {
     position: absolute;
