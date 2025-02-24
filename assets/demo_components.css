@@ -22,15 +22,25 @@ osc-ball {
 }
 
 osc-dot {
-  --_ball-size: var(--ball-size, 2px);
+  --_ball-size: var(--ball-size, 4px);
   background: var(--color-accent);
   width: var(--_ball-size);
   height: var(--_ball-size);
   z-index : 2;
+  border-radius: 100%;
 }
 
 
 osc-lane {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 999px;
+  box-shadow: inset 4px 4px 0px hsl(from black h s l / 0.3);
+  border: 2px dashed hsl(from var(--color-sheet) h s l / 0.8);
+  padding: 0.25ch 0.5ch;
+
   &::before {
     position: absolute;
     z-index: -1;

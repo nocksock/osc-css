@@ -7,10 +7,26 @@
   <link rel="stylesheet" href="./osc.css">
   <link rel="stylesheet" href="./assets/demo.css">
   <script defer data-domain="osc.style" src="https://plausible.io/js/script.js"></script>
+  <script src="./assets/demo.js" type="module"></script>
+
+  <script type="module">
+    // turn every headline into a link
+    ['h2', 'h3', 'h4'].forEach(tag => {
+      document.querySelectorAll(tag).forEach(h => {
+        const id = h.textContent.toLowerCase().replace(/[^a-z]/g, '-')
+        h.id = id
+        h.innerHTML = `<a href="#${id}">${h.innerHTML}</a>`
+      })
+    })
+  </script>
 </head>
 <body>
     <header>
-      <h1>OSC<span>.</span>CSS</h1>
+      <h1>
+        <span>OSC</span>
+        <span>.</span>
+        <span>CSS</span>
+      </h1>
       <p>
         CSS properties to animate numeric values where they are needed using oscillators and envelopes.
         Source available on <a href="http://github.com/nocksock/osc-css">GitHub</a>
@@ -19,19 +35,26 @@
 
     <main>
       <article>
-        <h3>Basic Usage</h3>
+        <h3>Basics</h3>
         <p>
-          Quickly create animations without defining keyframes:
+          An oscillator is a function that returns a value between -1 and 1 over time.
+          Or in different words: it oscillates between -1 and 1.
+          You are likely already familar with the most common oscillator: <code>sin</code>.
+        </p>
+        <p>
+          While oscillators are usually associated with audio synthesis, they are also great for animations.
+          Combining oscillators with envelopes can create complex and organic looking animations with very few lines of CSS.
+        </p>
+
+        <p>
+          Another benefit is, that instead of defining a several keyframes manually, you can use an oscillator to animate any numeric value right in place:
         </p>
 
         <figure id="basic">
           <style contenteditable="plaintext-only" spellcheck="false">
-          #basic {
-            osc-ball {
-              animation: var(--osc);
-              --osc-phase: 0.25s; 
-              translate: 0 calc(var(--osc-sin) * 100px);
-            }
+          #basic osc-ball {
+            animation: var(--osc);
+            translate: 0 calc(var(--osc-sin) * 100px);
           }
           </style>
           <osc-stage class="ch-x">
@@ -41,14 +64,15 @@
       </article>
 
       <article>
-        <h3>Comparing different oscillators</h3>
+        <h3>Different kinds of oscillators</h3>
         <p>
-          There are two versions of each oscillator:
+          There are 4 oscillators: <code>sin</code>, <code>cos</code>, <code>saw</code> and <code>tri</code>.
+          And there are two versions of each:
         </p>
 
         <ul class="numbered">
-          <li>Lowercase oscillators go from -1 to 1
-          <li>Uppercase go from 0 to 1.
+          <li><code>-1...1</code>: through zero are written in lower case
+          <li><code>&nbsp;0...1</code>: normalised are written in upper case
         </ul>
 
         <figure id="compare" class="nocode">
@@ -66,21 +90,14 @@
               }
 
               osc-lane {
-                display: inline-flex;
                 flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                position: relative;
                 font-size: 6cqb;
                 animation: var(--osc);
                 z-index: 1;
-                background:  hsl(from Canvas h s l / 0.3);
-                border-radius: 999px;
-                box-shadow: inset 2px 2px 2px hsl(from Canvas h s l / 0.3);
               }
             }
           </style>
-          <osc-stage class="ch-x">
+          <osc-stage>
             <osc-lane style="--use-osc: var(--osc-sin)">sin</osc-lane>
             <osc-lane style="--use-osc: var(--osc-cos)">cos</osc-lane>
             <osc-lane style="--use-osc: var(--osc-saw)">saw</osc-lane>
@@ -95,21 +112,38 @@
       <article>
         <h3>Using an envelope</h3>
         <p>
-          Use an envelope to control the amplitude of the oscillation.
-          Note how a simple setup with 2 oscillators and the envelope can create a complex animation.
+          Envelopes are used to control the amplitude of an oscillator.
+          In audio synthesis, one common use is to control the volume of a sound.
+          Here we can use it to control the amplitude of an animation.
         </p>
+
+        <p>
+          The builtin envelope is a so called 
+          <abbr title="delay attack hold decay">DAHD</abbr>
+          envelope generator. 
+          It has 4 stages:
+        </p>
+
+        <ul class="numbered">
+          <li><code>delay</code>: time before the attack starts
+          <li><code>attack</code>: time to reach full amplitude
+          <li><code>hold</code>: time to hold full amplitude
+          <li><code>decay</code>: time to reach zero amplitude
+        </ul>
+
+        <p>
+          Note how a simple setup with 2 oscillators, the envelope and a single element can already create a complex animation.
+        </p>
+
 
         <figure id="envelope">
           <style contenteditable="plaintext-only" spellcheck="false">
-          #envelope {
-            osc-ball {
-              animation: var(--osc);
-              --osc-cos-phase: 0.25s;
-              translate: 
-                calc(var(--osc-cos) * 100px * var(--osc-env))
-                calc(var(--osc-tri) * 200px * var(--osc-env))
-              ;
-            }
+          #envelope osc-ball {
+            animation: var(--osc);
+            translate: 
+              calc(var(--osc-cos) * 100px * var(--env-amp))
+              calc(var(--osc-tri) * 280px)
+            ;
           }
           </style>
           <osc-stage class="ch">
@@ -118,13 +152,17 @@
         </figure>
       </article>
 
-      
-
       <article>
-        <h3>Waveform</h3>
+        <h3>Visualising the waveform</h3>
         <p>
           Useful to visualise a calculation. 
-          But since ther are many elements, this gets rather heavy on the browser, so you need to enable it by changing the value of the --osc-state property.
+          But since ther are many elements, this gets rather heavy on the browser.
+          This site uses a Web Component with <a href="./assets/demo.js">IntersectionObserver</a> to set <code>--osc-state</code> to <code>running</code> when the element is in view.
+        </p>
+
+        <p>
+          Adjust the different parameters to see how the waveform changes. 
+          Envelope parameters are durations in seconds, frequency is in Hz.
         </p>
 
         <figure id="waveform">
@@ -137,21 +175,21 @@
           }
           </style>
           <style contenteditable="plaintext-only" spellcheck="false">
-            #waveform {
-              osc-dot {
-                animation: var(--osc);
-                --osc-state: paused; /* change this to running */
-                translate: 0 calc(var(--osc-sin) * 40px * var(--osc-env));
-              }
+            #waveform osc-dot {
+              --osc-frequency: 2;
+              --env-delay: 1;
+              --env-attack: 1;
+              --env-hold: 1;
+              --env-decay: 1;
+              translate: 0 calc(var(--osc-sin) * 40px * var(--env-amp));
+              animation: var(--osc);
             }
           </style>
           <osc-stage class="ch-x">
             <script type="module">
-
-            // replace this script tag with 100 osc-dot elements
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 75; i++) {
               const dot = document.createElement('osc-dot')
-              dot.style.setProperty('--osc-phase', `${i / 100}s`)
+              dot.style.setProperty('--osc-phase', `${i / 20}s`)
               document.querySelector('#waveform osc-stage').append(dot)
             }
             </script>
@@ -159,9 +197,141 @@
         </figure>
       </article>
 
+      <article id="creative">
+        <h3>Get creative!</h3>
+        <p>
+          So far we have only used the <code>translate</code> property to animate an element.
+          But you can use any property that accepts a numeric value!
+          And you can use multiple oscillators and envelopes in a single animation, and of course nest them.
+        </p>
+        <p>
+          And don't forget all the math functions that CSS supports!
+          Like <code>pow</code>, <code>sqrt</code>, <code>log</code>, <code>round</code> and many more.
+        </p>
+        <p>
+          As usual MDN has a list of all <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Values_and_Units/Using_CSS_math_functions#advanced_css_math_functions">advanced CSS math functions</a>.
+          Make sure to check them out, don't worry about understanding all the math; just try things out!
+          This approach is prone to happy accidents.
+        </p>
+
+        <figure id="creative-01">
+          <figcaption>
+            <p>
+              Here I threw <code>var(--env-amp)</code> into <code>log()</code> not sure what it would do.
+              But I like what it does!
+            </p>
+          </figcaption>
+          <style>
+          #creative-01 osc-dot {
+            animation: var(--osc);
+            --osc-frequency: 0.5;
+            --osc-sin-frequency: 1;
+            border-radius: 0;
+            transform: skew(calc(var(--osc-sin) * 100deg) calc(var(--osc-cos) * 20deg));
+            translate: 
+              calc(var(--osc-sin) * 50px * var(--env-amp))
+              calc(var(--osc-cos) * 50px * log(var(--env-amp)))
+            ;
+            rotate: calc(var(--osc-saw) * 360deg);
+            scale: calc(var(--osc-tri) * 10);
+          }
+          </style>
+          <osc-stage create="osc-dot" count="8" phased>
+          </osc-stage>
+        </figure>
+
+        <figure id="create-02">
+          <figcaption>
+            <p>
+              Combining <code>min()</code> and <code>--osc-sin</code>? Sure, why not!
+              Looks like a ball doing a stomp attack to me.
+            </p>
+          </figcaption>
+          <style>
+          #create-02 osc-ball {
+            animation: var(--osc);
+            translate: 0 calc(min(var(--osc-sin), var(--osc-saw)) * -150px);
+            scale: 
+              calc(2 + var(--osc-tri) * 20)
+              calc(2 + var(--osc-sin) * 10)
+            ;
+          }
+          </style>
+          <osc-stage>
+            <osc-ball></osc-ball>
+          </osc-stage>
+        </figure>
+
+        <figure id="creative-03">
+          <figcaption>
+            Don't forget about colors and gradients and make trippy visuals!
+          </figcaption>
+
+          <style>
+          #creative-03 osc-stage {
+            animation: var(--osc); 
+
+            /* incorporating primes to repeat less often */
+            --osc-sin-frequency: calc(1/30);
+            --osc-saw-frequency: calc(1/50);
+            --osc-cos-frequency: calc(1/70); 
+
+            /* change blend for other interesting aesthetics */
+            background-blend-mode: screen;
+
+            /* using fractions to make it easier to control */
+            background-size: 
+              calc(100%/1) calc(100%/8),
+              calc(100%/2) calc(100%/2),
+              calc(100%/1) calc(100%/1)
+              ;
+
+            filter: hue-rotate(calc(var(--osc-saw) * 360deg));
+            background-image: 
+              repeating-conic-gradient(
+                from calc(var(--osc-saw) * 90deg), 
+                red 30deg,
+                green 60deg,
+                blue 90deg
+              ),
+              repeating-conic-gradient(
+                from calc(var(--osc-cos) * 180deg), 
+                red 60deg,
+                green 120deg,
+                blue 180deg
+              ),
+              repeating-conic-gradient(
+                from calc(var(--osc-sin) * 360deg), 
+                red 90deg,
+                green 180deg,
+                blue 270deg
+              )
+            ;
+          }
+          </style>
+
+          <osc-stage>
+          </osc-stage>
+        </figure>
+      </article>
+
+      <article>
+        <h3>More examples</h3>
+        <p>
+          More examples are added over the next weeks and months.
+          Meanwhile, there are a few more in <a href="https://codepen.io/collection/OLrGvm">this codepen collection</a>.
+        </p>
+        <p>
+          If you create something cool with it, make sure to tag it with <code>osc-css</code> or share it with me on <a href="https://bsky.app/profile/nocksock.dev">bsky</a>.
+        </p>
+        </article>
     </main>
 
     <footer>
+
+      <p>
+        made by <a href="https://bleepbloop.studio">bleepbloop.studio</a>
+      </p>
 
     </footer>
 

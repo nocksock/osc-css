@@ -4,18 +4,22 @@
 @import "./demo_utils.css" layer(demo.utils);
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light dark; /* wip */
+  color-scheme: dark;
 
-  --color-black: #18181b;
+  --color-black: black;
+  --color-dark: #18181b;
   --color-pink: #fa4979;
   --color-white: #f3f3f3;
   --color-steel: #232135;
+  --color-whitish: #dee9f7;
 
   --color-fg: light-dark(var(--color-black), var(--color-white));
   --color-bg: light-dark(var(--color-white), var(--color-black));
 
   --color-soft: hsl(from var(--color-fg) h s l / 10%);
   --color-accent: var(--color-pink);
+  --color-sheet: light-dark(var(--color-whitish), var(--color-steel));
 
   color: var(--color-fg);
   background: var(--color-bg);

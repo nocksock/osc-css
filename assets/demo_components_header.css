@@ -1,14 +1,17 @@
-body>header {
+body > header {
   max-width: 60ch;
   font-size: 1.25rem;
   margin: 2rem auto;
 
   h1 {
+    display: flex;
     font-family: var(--font-mono);
     margin-bottom: 2rem;
-
     span {
       display: inline-block;
+    }
+
+    span:nth-child(2) {
       width: 1ch;
       animation: var(--osc);
       --osc-sin-frequency: 2;

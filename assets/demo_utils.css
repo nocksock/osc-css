@@ -1,8 +1,9 @@
 .stage {
+  --stage-border: 2px dashed var(--color-soft);
+
   position: relative;
   display: grid;
   place-content: center;
-  --stage-border: 2px dashed var(--color-soft);
 
   &:not(.no-ch) {
     &::before,
@@ -28,8 +29,9 @@
 }
 
 .ch-x {
-  position: relative;
   --stage-border: 2px dashed var(--color-soft);
+
+  position: relative;
 
   &::before,
   &::after {
@@ -69,14 +71,4 @@
     left: 0;
     right: 0;
   }
-}
-
-.waveform {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
-inline-block {
-  display: inline-block;
 }
