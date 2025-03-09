@@ -1,6 +1,13 @@
 {
   "name": "osc-css",
+  "description": "CSS properties to animate numeric values where they are needed using oscillators and envelopes.",
+  "version": "0.6.1",
+  "homepage": "https://osc.style/",
   "title": "osc-css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nocksock/osc-css"
+  },
   "keywords": [
     "css",
     "animation",
@@ -10,18 +17,21 @@
     "math",
     "trigonometry"
   ],
+  "main": "demo.css",
   "unpkg": "osc.css",
-  "version": "0.6.1",
-  "description": "CSS properties to animate numeric values where they are needed using oscillators and envelopes.",
   "files": [
     "osc.css"
   ],
-  "main": "demo.css",
-  "author": "Nils Riedemann",
-  "homepage": "https://osc.style/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nocksock/osc-css"
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "deploy": "pnpm run build && pnpm run site:sync",
+    "deploy:sync": "rsync -r dist/ cool:/var/www/osc.style/"
   },
-  "license": "MIT"
+  "author": "Nils Riedemann",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^6.2.1"
+  }
 }
