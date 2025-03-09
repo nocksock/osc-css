@@ -1,9 +1,9 @@
 > [!WARNING]
-> This project is still in development and not yet ready for production use. Braking API changes are to be expected.
+> This is still pre 1.0 and under development. Breaking changes are to be expected.
 
 # OSC.CSS
 
-CSS properties to animate numeric values where they are needed using oscillators and envelopes.
+ Helpers to animate numeric values where they are needed using oscillators and envelopes.
 
 - Pure CSS, 0 dependencies
 - 4 free running, independent Oscillators, each through zero + normalised.
@@ -141,7 +141,6 @@ The DAHD (Delay-Attack-Hold-Decay) envelope can be configured with these paramet
     opacity: var(--osc-SIN);
 }
 ```
-
 
 ## Caveats
 
