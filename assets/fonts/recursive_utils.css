@@ -1,0 +1,24 @@
+.text-sm {
+  letter-spacing: 0.50px;
+}
+
+.text-xs {
+  --font-feature-mono: 0.2;
+  letter-spacing: 0.60px;
+}
+
+.font-feature-slant {
+  --font-feature-slant: -15;
+}
+
+.font-bold {
+  --font-feature-weight: 700;
+}
+
+.font-sans {
+  --font-feature-casual: 0.0;
+}
+
+.font-mono {
+  --font-feature-mono: 1;
+}

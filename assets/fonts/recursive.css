@@ -1,0 +1,41 @@
+@import "./recursive_setup.css";
+@import "./recursive_utils.css";
+
+:root {
+  --font-family-mono: RecVar, ui-monospace, monospace;
+  --font-recursive: RecVar, system-ui, sans-serif;
+
+  /* 300 ... 1000 */
+  --font-feature-weight: 380;
+  /* 0...1 */
+  --font-feature-casual: 1;
+  /* 0 (off), 0.5 (auto) or 1 (on) */
+  --font-feature-cursive: 0.5;
+  /* -15 or 0 */
+  --font-feature-slant: 1;
+  /* 0 or 1 */
+  --font-feature-mono: 0.25;
+  --font-variation-settings:
+    'wght' var(--font-feature-weight),
+    'slnt' var(--font-feature-slant),
+    'CASL' var(--font-feature-casual),
+    'CRSV' var(--font-feature-cursive),
+    'MONO' var(--font-feature-mono);
+}
+
+* {
+  font-variation-settings: var(--font-variation-settings);
+}
+
+
+@property --font-feature-weight {
+  syntax: "<number>";
+  initial-value: 400;
+  inherits: true;
+}
+
+@property --font-feature-casual {
+  syntax: "<number>";
+  initial-value: 1;
+  inherits: true;
+}

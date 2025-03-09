@@ -5,7 +5,8 @@ body > header {
 
   h1 {
     display: flex;
-    font-family: var(--font-mono);
+    --font-feature-weight: 900;
+    font-weight: 900;
     margin-bottom: 2rem;
     span {
       display: inline-block;
