@@ -65,9 +65,25 @@
     var(--osc-only-saw),
     var(--osc-only-tri);
 
-  /* TODO: compare performance and behaviour of ease-in-out vs calculation */
-  --osc-sin: calc(sin(var(--osc-_sin) * pi));
-  --osc-cos: calc(cos(var(--osc-_cos) * pi));
+  --osc-sin-y:sin(var(--osc-_sin) * pi);
+  --osc-sin-abs: max(var(--osc-sin-y), -1 * var(--osc-sin-y));
+  --osc-sin-post-gain: pow(var(--osc-sin-abs), var(--amp-gain)) * var(--osc-sin-y);
+  --osc-sin: calc(var(--osc-sin-post-gain) * var(--amp-volume));
+
+  --osc-cos-y:cos(var(--osc-_cos) * pi);
+  --osc-cos-abs: max(var(--osc-cos-y), -1 * var(--osc-cos-y));
+  --osc-cos-post-gain: pow(var(--osc-cos-abs), var(--amp-gain)) * var(--osc-cos-y);
+  --osc-cos: calc(var(--osc-cos-post-gain) * var(--amp-volume));
+
+  --osc-tri-y: var(--osc-_tri);
+  --osc-tri-abs: max(var(--osc-tri-y), -1 * var(--osc-tri-y));
+  --osc-tri-post-gain: pow(var(--osc-tri-abs), var(--amp-gain)) * var(--osc-tri-y);
+  --osc-tri: calc(var(--osc-tri-post-gain) * var(--amp-volume));
+
+  --osc-saw-y: var(--osc-_saw);
+  --osc-saw-abs: max(var(--osc-saw-y), -1 * var(--osc-saw-y));
+  --osc-saw-post-gain: pow(var(--osc-saw-abs), var(--amp-gain)) * var(--osc-saw-y);
+  --osc-saw: calc(var(--osc-saw-post-gain) * var(--amp-volume));
 
   /* - normalised oscillators - */
   --osc-SIN: calc((1 + var(--osc-sin)) / 2);
@@ -81,13 +97,13 @@
 
 @property --osc-_sin { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
 @property --osc-_cos { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
-@property --osc-tri  { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
-@property --osc-saw  { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
+@property --osc-_tri  { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
+@property --osc-_saw  { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
 
 @keyframes osc-sin { from { --osc-_sin: -1; } to { --osc-_sin:  1; } }
 @keyframes osc-cos { from { --osc-_cos: -1; } to { --osc-_cos:  1; } }
-@keyframes osc-tri { from { --osc-tri: -1; } to { --osc-tri:  1; } }
-@keyframes osc-saw { from { --osc-saw: -1; } to { --osc-saw:  1; } }
+@keyframes osc-tri { from { --osc-_tri: -1; } to { --osc-_tri:  1; } }
+@keyframes osc-saw { from { --osc-_saw: -1; } to { --osc-_saw:  1; } }
 
 /* - amp envelope - */
 @property --env-amp  { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
@@ -104,4 +120,6 @@
 @property --_osc-hold-start    { syntax: "<percent>" ; initial-value: 0 ; inherits: false ; }
 @property --_osc-decay-start   { syntax: "<percent>" ; initial-value: 0 ; inherits: false ; }
 
+@property --amp-volume  { syntax: "<number>"  ; initial-value: 1 ; inherits: false ; }
+@property --amp-gain  { syntax: "<number>"  ; initial-value: 0 ; inherits: false ; }
 /* TODO: declare any missing properties (also makes debugging easier) */
