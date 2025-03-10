@@ -1,7 +1,7 @@
 {
   "name": "osc-css",
   "description": "CSS properties to animate numeric values where they are needed using oscillators and envelopes.",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "homepage": "https://osc.style/",
   "title": "osc-css",
   "repository": {
