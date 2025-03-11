@@ -21,7 +21,7 @@
   "unpkg": "osc.css",
   "files": [
     "osc.css",
-    "osc-fns.css"
+    "fns.css"
   ],
   "scripts": {
     "build": "vite build",
