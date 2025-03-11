@@ -1,0 +1,15 @@
+@function --sin(--v <number>) {
+  result: calc(var(--osc-sin) * var(--v));
+}
+@function --cos(--v <number>) {
+  result: calc(var(--osc-cos) * var(--v));
+}
+@function --saw(--v <number>) {
+  result: calc(var(--osc-saw) * var(--v));
+}
+@function --tri(--v <number>) {
+  result: calc(var(--osc-tri) * var(--v));
+}
+@function --amp(--v <number>) {
+  result: calc(var(--amp-volume) * var(--v));
+}

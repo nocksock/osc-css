@@ -17,10 +17,11 @@
     "math",
     "trigonometry"
   ],
-  "main": "demo.css",
+  "main": "osc.css",
   "unpkg": "osc.css",
   "files": [
-    "osc.css"
+    "osc.css",
+    "osc-fns.css"
   ],
   "scripts": {
     "build": "vite build",
