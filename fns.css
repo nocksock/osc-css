@@ -1,15 +1,18 @@
-@function --sin(--v <number>) {
+/**
+ * Some helper functions that currently only work in chrome canary.
+ **/
+@function --sin(--v) {
   result: calc(var(--osc-sin) * var(--v));
 }
-@function --cos(--v <number>) {
+@function --cos(--v) {
   result: calc(var(--osc-cos) * var(--v));
 }
-@function --saw(--v <number>) {
+@function --saw(--v) {
   result: calc(var(--osc-saw) * var(--v));
 }
-@function --tri(--v <number>) {
+@function --tri(--v) {
   result: calc(var(--osc-tri) * var(--v));
 }
-@function --amp(--v <number>) {
+@function --amp(--v) {
   result: calc(var(--amp-volume) * var(--v));
 }
