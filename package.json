@@ -24,11 +24,14 @@
     "fns.css"
   ],
   "scripts": {
-    "build": "vite build",
     "dev": "vite",
-    "preview": "vite preview",
-    "deploy": "pnpm run build && pnpm run site:sync",
-    "deploy:sync": "rsync -r dist/ cool:/var/www/osc.style/"
+    "site:build": "vite build",
+    "site:preview": "vite preview",
+    "site:deploy": "pnpm run build && pnpm run site:sync",
+    "site:deploy:sync": "rsync -r dist/ cool:/var/www/osc.style/",
+    "release:minor": "pnpm version minor && pnpm publish",
+    "release:patch": "pnpm version patch && pnpm publish",
+    "release:canary": "pnpm version prerelease --preid=canary && pnpm publish --tag canary --no-git-checks"
   },
   "author": "Nils Riedemann",
   "license": "MIT",
