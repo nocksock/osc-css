@@ -1,5 +1,5 @@
 /**
- * Some helper functions that currently only work in chrome canary.
+ * experimental approach that uses css functions
  **/
 @function --sin(--v) {
   result: calc(var(--osc-sin) * var(--v));
@@ -16,3 +16,28 @@
 @function --amp(--v) {
   result: calc(var(--amp-volume) * var(--v));
 }
+
+@function --osc(
+  --osc-keyframe: t,
+  --_osc-frequency: var(--osc-frequency, 1),
+  --_osc-phase: var(--osc-phase, 0.5)
+) {
+  result: calc(1s / var(--_osc-frequency)) linear var(--osc-keyframe) calc(-1s / var(--_osc-phase)) infinite;
+}
+
+@keyframes sin-t { from { --sin-t: -1;} to { --sin-t: 1;} }
+@property --sin-t { syntax: "<number>"; initial-value: 0; inherits: true; }
+@function --sin(--value, --pivot: 1px, --_t: var(--sin-t)) {
+  result: calc(
+    var(--pivot) +  sin(var(--_t) * pi) * var(--value)
+  );
+}
+
+@keyframes cos-t { from { --cos-t: -1;} to { --cos-t: 1;} }
+@property --cos-t { syntax: "<number>"; initial-value: 0; inherits: true; }
+@function --cos(--value, --pivot: 0, --_t: var(--cos-t)) {
+  result: calc(
+    cos(var(--_t) * pi) * var(--value)
+  );
+}
+
